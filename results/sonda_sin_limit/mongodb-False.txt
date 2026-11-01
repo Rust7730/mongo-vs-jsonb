@@ -1,0 +1,241 @@
+{
+ "explainVersion": "1",
+ "queryPlanner": {
+  "namespace": "bench.orders",
+  "parsedQuery": {
+   "$and": [
+    {
+     "payment.status": {
+      "$eq": "completed"
+     }
+    },
+    {
+     "timestamp": {
+      "$gte": "2026-01-01T00:00:00Z"
+     }
+    }
+   ]
+  },
+  "indexFilterSet": false,
+  "queryHash": "1F1F8489",
+  "planCacheShapeHash": "1F1F8489",
+  "planCacheKey": "57042284",
+  "optimizationTimeMillis": 0,
+  "optimizationTimeMicros": 134,
+  "optimizedPipeline": true,
+  "maxIndexedOrSolutionsReached": false,
+  "maxIndexedAndSolutionsReached": false,
+  "maxScansToExplodeReached": false,
+  "prunedSimilarIndexes": false,
+  "winningPlan": {
+   "isCached": false,
+   "stage": "SORT",
+   "sortPattern": {
+    "payment.final_total": -1
+   },
+   "memLimit": 104857600,
+   "type": "simple",
+   "inputStage": {
+    "stage": "PROJECTION_DEFAULT",
+    "transformBy": {
+     "_id": true,
+     "order_id": true,
+     "customer": {
+      "id": true
+     },
+     "payment": {
+      "final_total": true
+     }
+    },
+    "inputStage": {
+     "stage": "FETCH",
+     "filter": {
+      "payment.status": {
+       "$eq": "completed"
+      }
+     },
+     "nss": "bench.orders",
+     "inputStage": {
+      "stage": "IXSCAN",
+      "nss": "bench.orders",
+      "keyPattern": {
+       "timestamp": 1
+      },
+      "indexName": "timestamp_1",
+      "isMultiKey": false,
+      "multiKeyPaths": {
+       "timestamp": []
+      },
+      "isUnique": false,
+      "isSparse": false,
+      "isPartial": false,
+      "indexVersion": 2,
+      "direction": "forward",
+      "indexBounds": {
+       "timestamp": [
+        "[\"2026-01-01T00:00:00Z\", {})"
+       ]
+      }
+     }
+    }
+   }
+  },
+  "rejectedPlans": []
+ },
+ "executionStats": {
+  "executionSuccess": true,
+  "nReturned": 181307,
+  "executionTimeMillis": 5114,
+  "executionTimeMicros": 5114816,
+  "totalKeysExamined": 226680,
+  "totalDocsExamined": 226680,
+  "executionStages": {
+   "isCached": false,
+   "stage": "SORT",
+   "nReturned": 181307,
+   "executionTimeMillisEstimate": 5100,
+   "works": 407989,
+   "advanced": 181307,
+   "needTime": 226681,
+   "needYield": 0,
+   "saveState": 248,
+   "restoreState": 248,
+   "isEOF": 1,
+   "sortPattern": {
+    "payment.final_total": -1
+   },
+   "memLimit": 104857600,
+   "type": "simple",
+   "totalDataSizeSorted": 31910032,
+   "usedDisk": false,
+   "spills": 0,
+   "spilledRecords": 0,
+   "spilledBytes": 0,
+   "spilledDataStorageSize": 0,
+   "peakTrackedMemBytes": 31910032,
+   "inputStage": {
+    "stage": "PROJECTION_DEFAULT",
+    "nReturned": 181307,
+    "executionTimeMillisEstimate": 5027,
+    "works": 226681,
+    "advanced": 181307,
+    "needTime": 45373,
+    "needYield": 0,
+    "saveState": 248,
+    "restoreState": 248,
+    "isEOF": 1,
+    "transformBy": {
+     "_id": true,
+     "order_id": true,
+     "customer": {
+      "id": true
+     },
+     "payment": {
+      "final_total": true
+     }
+    },
+    "peakTrackedMemBytes": 0,
+    "inputStage": {
+     "stage": "FETCH",
+     "filter": {
+      "payment.status": {
+       "$eq": "completed"
+      }
+     },
+     "nReturned": 181307,
+     "executionTimeMillisEstimate": 4933,
+     "works": 226681,
+     "advanced": 181307,
+     "needTime": 45373,
+     "needYield": 0,
+     "saveState": 248,
+     "restoreState": 248,
+     "isEOF": 1,
+     "nss": "bench.orders",
+     "docsExamined": 226680,
+     "alreadyHasObj": 0,
+     "inputStage": {
+      "stage": "IXSCAN",
+      "nReturned": 226680,
+      "executionTimeMillisEstimate": 60,
+      "works": 226681,
+      "advanced": 226680,
+      "needTime": 0,
+      "needYield": 0,
+      "saveState": 248,
+      "restoreState": 248,
+      "isEOF": 1,
+      "nss": "bench.orders",
+      "keyPattern": {
+       "timestamp": 1
+      },
+      "indexName": "timestamp_1",
+      "isMultiKey": false,
+      "multiKeyPaths": {
+       "timestamp": []
+      },
+      "isUnique": false,
+      "isSparse": false,
+      "isPartial": false,
+      "indexVersion": 2,
+      "direction": "forward",
+      "indexBounds": {
+       "timestamp": [
+        "[\"2026-01-01T00:00:00Z\", {})"
+       ]
+      },
+      "keysExamined": 226680,
+      "seeks": 1,
+      "dupsTested": 0,
+      "dupsDropped": 0,
+      "peakTrackedMemBytes": 0
+     }
+    }
+   }
+  }
+ },
+ "queryShapeHash": "7BB455FBC58222DC22E68652C766008A8488CA98251DFA7B06A8042D4EA7878D",
+ "peakTrackedMemBytes": 31910032,
+ "command": {
+  "aggregate": "orders",
+  "pipeline": [
+   {
+    "$match": {
+     "payment.status": "completed",
+     "timestamp": {
+      "$gte": "2026-01-01T00:00:00Z"
+     }
+    }
+   },
+   {
+    "$sort": {
+     "payment.final_total": -1
+    }
+   },
+   {
+    "$project": {
+     "order_id": 1,
+     "customer.id": 1,
+     "payment.final_total": 1
+    }
+   }
+  ],
+  "cursor": {},
+  "allowDiskUse": false,
+  "$db": "bench"
+ },
+ "serverInfo": {
+  "host": "f32cb5b488d1",
+  "port": 27017,
+  "version": "9.0.4",
+  "gitVersion": "64ade602b836c9adeffba7fa038c887ffab56196"
+ },
+ "serverParameters": {
+  "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+  "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+  "internalQueryProhibitBlockingMergeOnMongoS": 0,
+  "internalQueryFrameworkControl": "trySbeRestricted",
+  "internalQueryPlannerIgnoreIndexWithCollationForRegex": 1
+ },
+ "ok": 1.0
+}

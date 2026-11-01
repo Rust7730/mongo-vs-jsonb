@@ -1,0 +1,47 @@
+{
+ "run": {
+  "id": "mongodb-C-Q1-c1-r1",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q1",
+  "concurrency": 1,
+  "rep": 1,
+  "variant": "strict"
+ },
+ "signals": {
+  "completed": 198,
+  "censored": 1,
+  "memory_errors": 0,
+  "conn_lost": 0,
+  "other_errors": 0,
+  "oom_kills": 0,
+  "spill": false,
+  "telemetry_ok": true
+ },
+ "verdict": {
+  "fault": false,
+  "status": "ok",
+  "reason": "ok"
+ },
+ "noisy": false,
+ "idle_sibling_busy_pct": 3.618235039749859,
+ "cpu_seconds": 299.690477,
+ "cgroup_throttled_seconds": 4.123391,
+ "nr_throttled_final": 3008,
+ "memory_peak_bytes": 985894912,
+ "anon_final": 431632384,
+ "shmem_final": 0,
+ "file_final": 537976832,
+ "before": {
+  "sort_spills": 0,
+  "group_spills": 0
+ },
+ "after": {
+  "sort_spills": 0,
+  "group_spills": 0
+ },
+ "written_bytes": 5120000,
+ "hung_clients": 0,
+ "prometheus_samples": 300.0,
+ "metric_source": "prometheus"
+}

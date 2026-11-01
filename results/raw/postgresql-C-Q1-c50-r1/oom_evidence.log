@@ -1,0 +1,42 @@
+docker inspect OOMKilled=True
+kernel: 229 eventos de OOM en el cgroup; motor: 24 líneas
+oct 31 01:44:18 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510344 (postgres) total-vm:538028kB, anon-rss:21596kB, file-rss:20kB, shmem-rss:5952kB, UID:999 pgtables:400kB oom_score_adj:0
+oct 31 01:44:19 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510358 (postgres) total-vm:538028kB, anon-rss:21632kB, file-rss:16kB, shmem-rss:6088kB, UID:999 pgtables:400kB oom_score_adj:0
+oct 31 01:44:20 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510297 (postgres) total-vm:538160kB, anon-rss:21792kB, file-rss:20kB, shmem-rss:5960kB, UID:999 pgtables:400kB oom_score_adj:0
+oct 31 01:44:20 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510278 (postgres) total-vm:538424kB, anon-rss:22064kB, file-rss:16kB, shmem-rss:6004kB, UID:999 pgtables:400kB oom_score_adj:0
+oct 31 01:44:20 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510352 (postgres) total-vm:538688kB, anon-rss:22316kB, file-rss:16kB, shmem-rss:5884kB, UID:999 pgtables:400kB oom_score_adj:0
+oct 31 01:44:21 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510300 (postgres) total-vm:540272kB, anon-rss:23936kB, file-rss:16kB, shmem-rss:5884kB, UID:999 pgtables:404kB oom_score_adj:0
+oct 31 01:44:22 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510299 (postgres) total-vm:539876kB, anon-rss:23492kB, file-rss:44kB, shmem-rss:5904kB, UID:999 pgtables:416kB oom_score_adj:0
+oct 31 01:44:22 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510346 (postgres) total-vm:539480kB, anon-rss:23148kB, file-rss:16kB, shmem-rss:6000kB, UID:999 pgtables:404kB oom_score_adj:0
+oct 31 01:44:22 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510355 (postgres) total-vm:539216kB, anon-rss:22908kB, file-rss:24kB, shmem-rss:6088kB, UID:999 pgtables:400kB oom_score_adj:0
+oct 31 01:44:22 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510357 (postgres) total-vm:540668kB, anon-rss:24356kB, file-rss:16kB, shmem-rss:6020kB, UID:999 pgtables:404kB oom_score_adj:0
+oct 31 01:44:22 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510345 (postgres) total-vm:540800kB, anon-rss:24368kB, file-rss:16kB, shmem-rss:5960kB, UID:999 pgtables:404kB oom_score_adj:0
+oct 31 01:44:26 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510437 (postgres) total-vm:544000kB, anon-rss:29520kB, file-rss:52kB, shmem-rss:5828kB, UID:999 pgtables:420kB oom_score_adj:0
+oct 31 01:44:27 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510438 (postgres) total-vm:543992kB, anon-rss:29504kB, file-rss:16kB, shmem-rss:5816kB, UID:999 pgtables:420kB oom_score_adj:0
+oct 31 01:44:28 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510440 (postgres) total-vm:540512kB, anon-rss:26540kB, file-rss:16kB, shmem-rss:5116kB, UID:999 pgtables:412kB oom_score_adj:0
+oct 31 01:44:29 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510439 (postgres) total-vm:540348kB, anon-rss:26392kB, file-rss:16kB, shmem-rss:5108kB, UID:999 pgtables:416kB oom_score_adj:0
+oct 31 01:44:33 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510445 (postgres) total-vm:542252kB, anon-rss:25844kB, file-rss:16kB, shmem-rss:5444kB, UID:999 pgtables:408kB oom_score_adj:0
+oct 31 01:44:35 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510447 (postgres) total-vm:543044kB, anon-rss:26656kB, file-rss:16kB, shmem-rss:5440kB, UID:999 pgtables:408kB oom_score_adj:0
+oct 31 01:44:36 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510446 (postgres) total-vm:543308kB, anon-rss:26884kB, file-rss:16kB, shmem-rss:5448kB, UID:999 pgtables:408kB oom_score_adj:0
+oct 31 01:44:39 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510444 (postgres) total-vm:542516kB, anon-rss:26112kB, file-rss:16kB, shmem-rss:5512kB, UID:999 pgtables:416kB oom_score_adj:0
+oct 31 01:44:42 cachyos-Desk kernel: Memory cgroup out of memory: Killed process 510443 (postgres) total-vm:542648kB, anon-rss:26288kB, file-rss:16kB, shmem-rss:5520kB, UID:999 pgtables:416kB oom_score_adj:0
+2026-10-31 07:44:22.402 UTC [1] LOG:  client backend (PID 69) was terminated by signal 9: Killed
+2026-10-31 07:44:45.309 UTC [1] LOG:  client backend (PID 114) was terminated by signal 9: Killed
+2026-10-31 07:45:13.115 UTC [1] LOG:  client backend (PID 228) was terminated by signal 9: Killed
+2026-10-31 07:45:25.218 UTC [1] LOG:  client backend (PID 317) was terminated by signal 9: Killed
+2026-10-31 07:45:49.109 UTC [1] LOG:  client backend (PID 459) was terminated by signal 9: Killed
+2026-10-31 07:46:03.702 UTC [1] LOG:  client backend (PID 531) was terminated by signal 9: Killed
+2026-10-31 07:46:21.201 UTC [1] LOG:  client backend (PID 610) was terminated by signal 9: Killed
+2026-10-31 07:46:37.009 UTC [1] LOG:  client backend (PID 694) was terminated by signal 9: Killed
+2026-10-31 07:46:46.207 UTC [1] LOG:  background worker "parallel worker" (PID 772) was terminated by signal 9: Killed
+2026-10-31 07:46:56.818 UTC [1] LOG:  client backend (PID 837) was terminated by signal 9: Killed
+2026-10-31 07:47:00.819 UTC [1] LOG:  client backend (PID 908) was terminated by signal 9: Killed
+2026-10-31 07:47:12.312 UTC [1] LOG:  client backend (PID 974) was terminated by signal 9: Killed
+2026-10-31 07:47:24.711 UTC [1] LOG:  client backend (PID 1090) was terminated by signal 9: Killed
+2026-10-31 07:47:59.022 UTC [1] LOG:  background worker "parallel worker" (PID 1241) was terminated by signal 9: Killed
+2026-10-31 07:48:13.315 UTC [1] LOG:  client backend (PID 1314) was terminated by signal 9: Killed
+2026-10-31 07:48:23.623 UTC [1] LOG:  client backend (PID 1386) was terminated by signal 9: Killed
+2026-10-31 07:48:28.915 UTC [1] LOG:  background worker "parallel worker" (PID 1499) was terminated by signal 9: Killed
+2026-10-31 07:48:37.401 UTC [1] LOG:  client backend (PID 1596) was terminated by signal 9: Killed
+2026-10-31 07:48:46.714 UTC [1] LOG:  client backend (PID 1663) was terminated by signal 9: Killed
+2026-10-31 07:49:06.019 UTC [1] LOG:  client backend (PID 1777) was terminated by signal 9: Killed

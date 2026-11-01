@@ -1,0 +1,343 @@
+{"ts": 1793422517.5566201, "event": "campaign_started"}
+{"ts": 1793422518.542835, "event": "run_started", "run": "mongodb-C-Q1-c1-r1"}
+{"ts": 1793422940.2038305, "event": "run_finished", "run": "mongodb-C-Q1-c1-r1", "status": "ok"}
+{"ts": 1793422940.2050264, "event": "run_started", "run": "postgresql-C-Q2-c50-r1"}
+{"ts": 1793423362.971735, "event": "run_finished", "run": "postgresql-C-Q2-c50-r1", "status": "ok"}
+{"ts": 1793423362.973155, "event": "run_started", "run": "mongodb-A-Q1-c10-r1"}
+{"ts": 1793423784.9229865, "event": "run_finished", "run": "mongodb-A-Q1-c10-r1", "status": "ok"}
+{"ts": 1793423784.9242468, "event": "run_started", "run": "postgresql-B-Q2-c50-r1"}
+{"ts": 1793424207.2312977, "event": "run_finished", "run": "postgresql-B-Q2-c50-r1", "status": "ok"}
+{"ts": 1793424207.2325232, "event": "run_started", "run": "postgresql-C-Q1-c1-r1"}
+{"ts": 1793424629.764729, "event": "run_finished", "run": "postgresql-C-Q1-c1-r1", "status": "spill"}
+{"ts": 1793424629.78426, "event": "run_started", "run": "postgresql-C-Q2-c1-r1"}
+{"ts": 1793425053.0438535, "event": "run_finished", "run": "postgresql-C-Q2-c1-r1", "status": "ok"}
+{"ts": 1793425053.0452104, "event": "run_started", "run": "mongodb-C-Q2-c1-r1"}
+{"ts": 1793425475.312591, "event": "run_finished", "run": "mongodb-C-Q2-c1-r1", "status": "ok"}
+{"ts": 1793425475.313801, "event": "run_started", "run": "mongodb-B-Q2-c50-r1"}
+{"ts": 1793425897.178168, "event": "run_finished", "run": "mongodb-B-Q2-c50-r1", "status": "ok"}
+{"ts": 1793425897.179549, "event": "run_started", "run": "mongodb-B-Q1-c1-r1"}
+{"ts": 1793426318.939957, "event": "run_finished", "run": "mongodb-B-Q1-c1-r1", "status": "ok"}
+{"ts": 1793426318.9412549, "event": "run_started", "run": "postgresql-B-Q1-c1-r1"}
+{"ts": 1793426741.3215048, "event": "run_finished", "run": "postgresql-B-Q1-c1-r1", "status": "spill"}
+{"ts": 1793426741.32273, "event": "run_started", "run": "mongodb-B-Q1-c10-r1"}
+{"ts": 1793427163.074086, "event": "run_finished", "run": "mongodb-B-Q1-c10-r1", "status": "ok"}
+{"ts": 1793427163.0754638, "event": "run_started", "run": "mongodb-C-Q2-c50-r1"}
+{"ts": 1793427584.8523695, "event": "run_finished", "run": "mongodb-C-Q2-c50-r1", "status": "ok"}
+{"ts": 1793427584.8535354, "event": "run_started", "run": "postgresql-A-Q2-c10-r1"}
+{"ts": 1793428007.1292572, "event": "run_finished", "run": "postgresql-A-Q2-c10-r1", "status": "ok"}
+{"ts": 1793428007.1305196, "event": "run_started", "run": "postgresql-B-Q2-c10-r1"}
+{"ts": 1793428429.3905096, "event": "run_finished", "run": "postgresql-B-Q2-c10-r1", "status": "ok"}
+{"ts": 1793428429.3918328, "event": "run_started", "run": "postgresql-B-Q2-c1-r1"}
+{"ts": 1793428851.6396334, "event": "run_finished", "run": "postgresql-B-Q2-c1-r1", "status": "ok"}
+{"ts": 1793428851.640929, "event": "run_started", "run": "mongodb-A-Q1-c1-r1"}
+{"ts": 1793429273.5842462, "event": "run_finished", "run": "mongodb-A-Q1-c1-r1", "status": "ok"}
+{"ts": 1793429273.5856214, "event": "run_started", "run": "postgresql-C-Q1-c10-r1"}
+{"ts": 1793429695.819098, "event": "run_finished", "run": "postgresql-C-Q1-c10-r1", "status": "spill"}
+{"ts": 1793429695.820624, "event": "run_started", "run": "mongodb-A-Q2-c50-r1"}
+{"ts": 1793430117.832977, "event": "run_finished", "run": "mongodb-A-Q2-c50-r1", "status": "ok"}
+{"ts": 1793430117.8342602, "event": "run_started", "run": "postgresql-A-Q1-c10-r1"}
+{"ts": 1793430542.7243073, "event": "run_suspect", "run": "postgresql-A-Q1-c10-r1"}
+{"ts": 1793430542.7348776, "event": "run_started", "run": "mongodb-A-Q2-c10-r1"}
+{"ts": 1793430965.5691023, "event": "run_finished", "run": "mongodb-A-Q2-c10-r1", "status": "ok"}
+{"ts": 1793430965.5703826, "event": "run_started", "run": "mongodb-C-Q1-c10-r1"}
+{"ts": 1793431387.4017742, "event": "run_finished", "run": "mongodb-C-Q1-c10-r1", "status": "ok"}
+{"ts": 1793431387.4030142, "event": "run_started", "run": "mongodb-B-Q2-c1-r1"}
+{"ts": 1793431809.5808344, "event": "run_finished", "run": "mongodb-B-Q2-c1-r1", "status": "ok"}
+{"ts": 1793431809.5822616, "event": "run_started", "run": "mongodb-B-Q2-c10-r1"}
+{"ts": 1793432231.8284144, "event": "run_finished", "run": "mongodb-B-Q2-c10-r1", "status": "ok"}
+{"ts": 1793432231.8299782, "event": "run_started", "run": "mongodb-A-Q2-c1-r1"}
+{"ts": 1793432653.6332386, "event": "run_finished", "run": "mongodb-A-Q2-c1-r1", "status": "ok"}
+{"ts": 1793432653.6346266, "event": "run_started", "run": "postgresql-C-Q1-c50-r1"}
+{"ts": 1793433076.1525886, "event": "run_finished", "run": "postgresql-C-Q1-c50-r1", "status": "oom"}
+{"ts": 1793433076.1540844, "event": "run_started", "run": "postgresql-A-Q1-c50-r1"}
+{"ts": 1793433498.454576, "event": "run_suspect", "run": "postgresql-A-Q1-c50-r1"}
+{"ts": 1793433498.4646347, "event": "run_started", "run": "mongodb-B-Q1-c50-r1"}
+{"ts": 1793433921.2953439, "event": "run_finished", "run": "mongodb-B-Q1-c50-r1", "status": "ok"}
+{"ts": 1793433921.2967925, "event": "run_started", "run": "postgresql-A-Q1-c1-r1"}
+{"ts": 1793434343.5232332, "event": "run_finished", "run": "postgresql-A-Q1-c1-r1", "status": "spill"}
+{"ts": 1793434343.5246162, "event": "run_started", "run": "mongodb-C-Q2-c10-r1"}
+{"ts": 1793434765.3154695, "event": "run_finished", "run": "mongodb-C-Q2-c10-r1", "status": "ok"}
+{"ts": 1793434765.316928, "event": "run_started", "run": "postgresql-B-Q1-c10-r1"}
+{"ts": 1793435187.662033, "event": "run_finished", "run": "postgresql-B-Q1-c10-r1", "status": "spill"}
+{"ts": 1793435187.6753466, "event": "run_started", "run": "postgresql-A-Q2-c50-r1"}
+{"ts": 1793435610.4687073, "event": "run_finished", "run": "postgresql-A-Q2-c50-r1", "status": "ok"}
+{"ts": 1793435610.4700725, "event": "run_started", "run": "mongodb-A-Q1-c50-r1"}
+{"ts": 1793436032.3369036, "event": "run_finished", "run": "mongodb-A-Q1-c50-r1", "status": "ok"}
+{"ts": 1793436032.3383873, "event": "run_started", "run": "postgresql-B-Q1-c50-r1"}
+{"ts": 1793436454.6639252, "event": "run_finished", "run": "postgresql-B-Q1-c50-r1", "status": "oom"}
+{"ts": 1793436454.6653337, "event": "run_started", "run": "postgresql-A-Q2-c1-r1"}
+{"ts": 1793436877.0145805, "event": "run_finished", "run": "postgresql-A-Q2-c1-r1", "status": "ok"}
+{"ts": 1793436877.0159743, "event": "run_started", "run": "mongodb-C-Q1-c50-r1"}
+{"ts": 1793437298.8831522, "event": "run_finished", "run": "mongodb-C-Q1-c50-r1", "status": "ok"}
+{"ts": 1793437298.8846662, "event": "run_started", "run": "postgresql-C-Q2-c10-r1"}
+{"ts": 1793437721.0864582, "event": "run_finished", "run": "postgresql-C-Q2-c10-r1", "status": "ok"}
+{"ts": 1793437721.088126, "event": "run_started", "run": "postgresql-C-Q2-c1-r2"}
+{"ts": 1793438143.3439696, "event": "run_finished", "run": "postgresql-C-Q2-c1-r2", "status": "ok"}
+{"ts": 1793438143.34544, "event": "run_started", "run": "mongodb-B-Q2-c10-r2"}
+{"ts": 1793438565.373579, "event": "run_finished", "run": "mongodb-B-Q2-c10-r2", "status": "ok"}
+{"ts": 1793438565.375986, "event": "run_started", "run": "postgresql-C-Q1-c10-r2"}
+{"ts": 1793438987.7602541, "event": "run_finished", "run": "postgresql-C-Q1-c10-r2", "status": "spill"}
+{"ts": 1793438987.7681565, "event": "run_started", "run": "postgresql-B-Q2-c1-r2"}
+{"ts": 1793439410.9769592, "event": "run_finished", "run": "postgresql-B-Q2-c1-r2", "status": "ok"}
+{"ts": 1793439410.9786963, "event": "run_started", "run": "postgresql-B-Q1-c10-r2"}
+{"ts": 1793439833.4285333, "event": "run_finished", "run": "postgresql-B-Q1-c10-r2", "status": "spill"}
+{"ts": 1793439833.430003, "event": "run_started", "run": "postgresql-C-Q1-c50-r2"}
+{"ts": 1793440256.245131, "event": "run_finished", "run": "postgresql-C-Q1-c50-r2", "status": "oom"}
+{"ts": 1793440256.2466235, "event": "run_started", "run": "mongodb-C-Q1-c10-r2"}
+{"ts": 1793440678.1920085, "event": "run_finished", "run": "mongodb-C-Q1-c10-r2", "status": "ok"}
+{"ts": 1793440678.1935642, "event": "run_started", "run": "mongodb-C-Q2-c50-r2"}
+{"ts": 1793441100.0162232, "event": "run_finished", "run": "mongodb-C-Q2-c50-r2", "status": "ok"}
+{"ts": 1793441100.0177176, "event": "run_started", "run": "postgresql-B-Q2-c10-r2"}
+{"ts": 1793441522.3119578, "event": "run_finished", "run": "postgresql-B-Q2-c10-r2", "status": "ok"}
+{"ts": 1793441522.3135133, "event": "run_started", "run": "postgresql-C-Q2-c50-r2"}
+{"ts": 1793441944.6462114, "event": "run_finished", "run": "postgresql-C-Q2-c50-r2", "status": "ok"}
+{"ts": 1793441944.647728, "event": "run_started", "run": "postgresql-C-Q1-c1-r2"}
+{"ts": 1793442367.0947802, "event": "run_finished", "run": "postgresql-C-Q1-c1-r2", "status": "spill"}
+{"ts": 1793442367.0962348, "event": "run_started", "run": "mongodb-B-Q1-c10-r2"}
+{"ts": 1793442789.108789, "event": "run_finished", "run": "mongodb-B-Q1-c10-r2", "status": "ok"}
+{"ts": 1793442789.110232, "event": "run_started", "run": "mongodb-C-Q1-c1-r2"}
+{"ts": 1793443210.8818204, "event": "run_finished", "run": "mongodb-C-Q1-c1-r2", "status": "ok"}
+{"ts": 1793443210.883375, "event": "run_started", "run": "mongodb-A-Q1-c10-r2"}
+{"ts": 1793443632.6078563, "event": "run_finished", "run": "mongodb-A-Q1-c10-r2", "status": "ok"}
+{"ts": 1793443632.6093726, "event": "run_started", "run": "mongodb-C-Q2-c10-r2"}
+{"ts": 1793444054.5516174, "event": "run_finished", "run": "mongodb-C-Q2-c10-r2", "status": "ok"}
+{"ts": 1793444054.5533214, "event": "run_started", "run": "postgresql-A-Q2-c10-r2"}
+{"ts": 1793444477.0591528, "event": "run_finished", "run": "postgresql-A-Q2-c10-r2", "status": "ok"}
+{"ts": 1793444477.0606985, "event": "run_started", "run": "mongodb-A-Q2-c1-r2"}
+{"ts": 1793444899.0578578, "event": "run_finished", "run": "mongodb-A-Q2-c1-r2", "status": "ok"}
+{"ts": 1793444899.0594552, "event": "run_started", "run": "postgresql-B-Q1-c50-r2"}
+{"ts": 1793445321.4950252, "event": "run_finished", "run": "postgresql-B-Q1-c50-r2", "status": "oom"}
+{"ts": 1793445321.4965594, "event": "run_started", "run": "postgresql-A-Q2-c1-r2"}
+{"ts": 1793445743.7962568, "event": "run_finished", "run": "postgresql-A-Q2-c1-r2", "status": "ok"}
+{"ts": 1793445743.7978597, "event": "run_started", "run": "mongodb-A-Q2-c10-r2"}
+{"ts": 1793446165.8292632, "event": "run_finished", "run": "mongodb-A-Q2-c10-r2", "status": "ok"}
+{"ts": 1793446165.8318639, "event": "run_started", "run": "mongodb-B-Q1-c1-r2"}
+{"ts": 1793446587.675571, "event": "run_finished", "run": "mongodb-B-Q1-c1-r2", "status": "ok"}
+{"ts": 1793446587.6772478, "event": "run_started", "run": "postgresql-A-Q1-c1-r2"}
+{"ts": 1793447009.9988072, "event": "run_finished", "run": "postgresql-A-Q1-c1-r2", "status": "spill"}
+{"ts": 1793447010.0002432, "event": "run_started", "run": "postgresql-C-Q2-c10-r2"}
+{"ts": 1793447432.3573139, "event": "run_finished", "run": "postgresql-C-Q2-c10-r2", "status": "ok"}
+{"ts": 1793447432.359019, "event": "run_started", "run": "mongodb-B-Q1-c50-r2"}
+{"ts": 1793447854.1768734, "event": "run_finished", "run": "mongodb-B-Q1-c50-r2", "status": "ok"}
+{"ts": 1793447854.178456, "event": "run_started", "run": "postgresql-A-Q2-c50-r2"}
+{"ts": 1793448276.6029356, "event": "run_finished", "run": "postgresql-A-Q2-c50-r2", "status": "ok"}
+{"ts": 1793448276.6044812, "event": "run_started", "run": "postgresql-B-Q2-c50-r2"}
+{"ts": 1793448698.9743168, "event": "run_finished", "run": "postgresql-B-Q2-c50-r2", "status": "ok"}
+{"ts": 1793448698.976146, "event": "run_started", "run": "mongodb-A-Q1-c50-r2"}
+{"ts": 1793449120.9016757, "event": "run_finished", "run": "mongodb-A-Q1-c50-r2", "status": "ok"}
+{"ts": 1793449120.9032626, "event": "run_started", "run": "mongodb-C-Q1-c50-r2"}
+{"ts": 1793449543.7470562, "event": "run_finished", "run": "mongodb-C-Q1-c50-r2", "status": "ok"}
+{"ts": 1793449543.7485838, "event": "run_started", "run": "mongodb-A-Q1-c1-r2"}
+{"ts": 1793449965.4958346, "event": "run_finished", "run": "mongodb-A-Q1-c1-r2", "status": "ok"}
+{"ts": 1793449965.497383, "event": "run_started", "run": "mongodb-A-Q2-c50-r2"}
+{"ts": 1793450387.408768, "event": "run_finished", "run": "mongodb-A-Q2-c50-r2", "status": "ok"}
+{"ts": 1793450387.4104106, "event": "run_started", "run": "postgresql-A-Q1-c50-r2"}
+{"ts": 1793450809.7629693, "event": "run_suspect", "run": "postgresql-A-Q1-c50-r2"}
+{"ts": 1793450809.7715623, "event": "run_started", "run": "mongodb-B-Q2-c1-r2"}
+{"ts": 1793451232.493041, "event": "run_finished", "run": "mongodb-B-Q2-c1-r2", "status": "ok"}
+{"ts": 1793451232.4946582, "event": "run_started", "run": "postgresql-B-Q1-c1-r2"}
+{"ts": 1793451654.9302466, "event": "run_finished", "run": "postgresql-B-Q1-c1-r2", "status": "spill"}
+{"ts": 1793451654.942512, "event": "run_started", "run": "postgresql-A-Q1-c10-r2"}
+{"ts": 1793452078.174024, "event": "run_suspect", "run": "postgresql-A-Q1-c10-r2"}
+{"ts": 1793452078.1757877, "event": "run_started", "run": "mongodb-C-Q2-c1-r2"}
+{"ts": 1793452500.0174286, "event": "run_finished", "run": "mongodb-C-Q2-c1-r2", "status": "ok"}
+{"ts": 1793452500.019135, "event": "run_started", "run": "mongodb-B-Q2-c50-r2"}
+{"ts": 1793452921.8804681, "event": "run_finished", "run": "mongodb-B-Q2-c50-r2", "status": "ok"}
+{"ts": 1793452921.8820403, "event": "run_started", "run": "postgresql-C-Q1-c50-r3"}
+{"ts": 1793453344.4991217, "event": "run_finished", "run": "postgresql-C-Q1-c50-r3", "status": "oom"}
+{"ts": 1793453344.5008554, "event": "run_started", "run": "postgresql-C-Q2-c1-r3"}
+{"ts": 1793453766.8729877, "event": "run_finished", "run": "postgresql-C-Q2-c1-r3", "status": "ok"}
+{"ts": 1793453766.874635, "event": "run_started", "run": "postgresql-A-Q2-c1-r3"}
+{"ts": 1793454189.1898236, "event": "run_finished", "run": "postgresql-A-Q2-c1-r3", "status": "ok"}
+{"ts": 1793454189.191553, "event": "run_started", "run": "mongodb-C-Q2-c1-r3"}
+{"ts": 1793454611.0312274, "event": "run_finished", "run": "mongodb-C-Q2-c1-r3", "status": "ok"}
+{"ts": 1793454611.0330572, "event": "run_started", "run": "postgresql-A-Q1-c50-r3"}
+{"ts": 1793455033.4547045, "event": "run_suspect", "run": "postgresql-A-Q1-c50-r3"}
+{"ts": 1793455033.4688346, "event": "run_started", "run": "mongodb-A-Q1-c50-r3"}
+{"ts": 1793455455.860599, "event": "run_finished", "run": "mongodb-A-Q1-c50-r3", "status": "ok"}
+{"ts": 1793455455.8622928, "event": "run_started", "run": "mongodb-C-Q1-c1-r3"}
+{"ts": 1793455877.6224592, "event": "run_finished", "run": "mongodb-C-Q1-c1-r3", "status": "ok"}
+{"ts": 1793455877.6241274, "event": "run_started", "run": "postgresql-A-Q1-c10-r3"}
+{"ts": 1793456299.947355, "event": "run_suspect", "run": "postgresql-A-Q1-c10-r3"}
+{"ts": 1793456299.9603262, "event": "run_started", "run": "postgresql-C-Q1-c1-r3"}
+{"ts": 1793456723.189699, "event": "run_finished", "run": "postgresql-C-Q1-c1-r3", "status": "spill"}
+{"ts": 1793456723.191602, "event": "run_started", "run": "mongodb-A-Q2-c50-r3"}
+{"ts": 1793457145.1851914, "event": "run_finished", "run": "mongodb-A-Q2-c50-r3", "status": "ok"}
+{"ts": 1793457145.1868498, "event": "run_started", "run": "mongodb-B-Q2-c1-r3"}
+{"ts": 1793457567.4867127, "event": "run_finished", "run": "mongodb-B-Q2-c1-r3", "status": "ok"}
+{"ts": 1793457567.4883568, "event": "run_started", "run": "mongodb-A-Q1-c1-r3"}
+{"ts": 1793457989.3228865, "event": "run_finished", "run": "mongodb-A-Q1-c1-r3", "status": "ok"}
+{"ts": 1793457989.3245847, "event": "run_started", "run": "postgresql-B-Q1-c10-r3"}
+{"ts": 1793458411.6251466, "event": "run_finished", "run": "postgresql-B-Q1-c10-r3", "status": "spill"}
+{"ts": 1793458411.6267934, "event": "run_started", "run": "mongodb-C-Q1-c50-r3"}
+{"ts": 1793458834.1744432, "event": "run_finished", "run": "mongodb-C-Q1-c50-r3", "status": "ok"}
+{"ts": 1793458834.176143, "event": "run_started", "run": "postgresql-B-Q2-c10-r3"}
+{"ts": 1793459256.4244132, "event": "run_finished", "run": "postgresql-B-Q2-c10-r3", "status": "ok"}
+{"ts": 1793459256.426798, "event": "run_started", "run": "postgresql-C-Q2-c50-r3"}
+{"ts": 1793459678.7980382, "event": "run_finished", "run": "postgresql-C-Q2-c50-r3", "status": "ok"}
+{"ts": 1793459678.79972, "event": "run_started", "run": "mongodb-B-Q2-c50-r3"}
+{"ts": 1793460100.8003669, "event": "run_finished", "run": "mongodb-B-Q2-c50-r3", "status": "ok"}
+{"ts": 1793460100.8020213, "event": "run_started", "run": "postgresql-A-Q2-c10-r3"}
+{"ts": 1793460523.0711849, "event": "run_finished", "run": "postgresql-A-Q2-c10-r3", "status": "ok"}
+{"ts": 1793460523.0727596, "event": "run_started", "run": "mongodb-A-Q1-c10-r3"}
+{"ts": 1793460944.945846, "event": "run_finished", "run": "mongodb-A-Q1-c10-r3", "status": "ok"}
+{"ts": 1793460944.9475543, "event": "run_started", "run": "postgresql-C-Q1-c10-r3"}
+{"ts": 1793461367.2330053, "event": "run_finished", "run": "postgresql-C-Q1-c10-r3", "status": "spill"}
+{"ts": 1793461367.2346866, "event": "run_started", "run": "postgresql-A-Q2-c50-r3"}
+{"ts": 1793461789.781866, "event": "run_finished", "run": "postgresql-A-Q2-c50-r3", "status": "ok"}
+{"ts": 1793461789.7838454, "event": "run_started", "run": "postgresql-C-Q2-c10-r3"}
+{"ts": 1793462212.1438558, "event": "run_finished", "run": "postgresql-C-Q2-c10-r3", "status": "ok"}
+{"ts": 1793462212.145656, "event": "run_started", "run": "postgresql-B-Q2-c50-r3"}
+{"ts": 1793462634.6981878, "event": "run_finished", "run": "postgresql-B-Q2-c50-r3", "status": "ok"}
+{"ts": 1793462634.6998672, "event": "run_started", "run": "mongodb-C-Q2-c10-r3"}
+{"ts": 1793463056.5379872, "event": "run_finished", "run": "mongodb-C-Q2-c10-r3", "status": "ok"}
+{"ts": 1793463056.5397067, "event": "run_started", "run": "postgresql-B-Q1-c50-r3"}
+{"ts": 1793463478.9173973, "event": "run_finished", "run": "postgresql-B-Q1-c50-r3", "status": "oom"}
+{"ts": 1793463478.919083, "event": "run_started", "run": "postgresql-A-Q1-c1-r3"}
+{"ts": 1793463901.4124432, "event": "run_finished", "run": "postgresql-A-Q1-c1-r3", "status": "spill"}
+{"ts": 1793463901.4140992, "event": "run_started", "run": "mongodb-B-Q1-c50-r3"}
+{"ts": 1793464323.2378187, "event": "run_finished", "run": "mongodb-B-Q1-c50-r3", "status": "ok"}
+{"ts": 1793464323.2394965, "event": "run_started", "run": "mongodb-A-Q2-c1-r3"}
+{"ts": 1793464745.044575, "event": "run_finished", "run": "mongodb-A-Q2-c1-r3", "status": "ok"}
+{"ts": 1793464745.0462835, "event": "run_started", "run": "mongodb-B-Q2-c10-r3"}
+{"ts": 1793465166.945907, "event": "run_finished", "run": "mongodb-B-Q2-c10-r3", "status": "ok"}
+{"ts": 1793465166.9476397, "event": "run_started", "run": "postgresql-B-Q1-c1-r3"}
+{"ts": 1793465589.2906425, "event": "run_finished", "run": "postgresql-B-Q1-c1-r3", "status": "spill"}
+{"ts": 1793465589.29243, "event": "run_started", "run": "mongodb-B-Q1-c10-r3"}
+{"ts": 1793466011.0701268, "event": "run_finished", "run": "mongodb-B-Q1-c10-r3", "status": "ok"}
+{"ts": 1793466011.0719948, "event": "run_started", "run": "mongodb-C-Q2-c50-r3"}
+{"ts": 1793466433.0719082, "event": "run_finished", "run": "mongodb-C-Q2-c50-r3", "status": "ok"}
+{"ts": 1793466433.07377, "event": "run_started", "run": "postgresql-B-Q2-c1-r3"}
+{"ts": 1793466855.404064, "event": "run_finished", "run": "postgresql-B-Q2-c1-r3", "status": "ok"}
+{"ts": 1793466855.4057722, "event": "run_started", "run": "mongodb-C-Q1-c10-r3"}
+{"ts": 1793467277.8992302, "event": "run_finished", "run": "mongodb-C-Q1-c10-r3", "status": "ok"}
+{"ts": 1793467277.9010034, "event": "run_started", "run": "mongodb-B-Q1-c1-r3"}
+{"ts": 1793467699.6656992, "event": "run_finished", "run": "mongodb-B-Q1-c1-r3", "status": "ok"}
+{"ts": 1793467699.6676853, "event": "run_started", "run": "mongodb-A-Q2-c10-r3"}
+{"ts": 1793468121.545518, "event": "run_finished", "run": "mongodb-A-Q2-c10-r3", "status": "ok"}
+{"ts": 1793468121.5472524, "event": "run_started", "run": "postgresql-C-Q2-c50-r2-annex"}
+{"ts": 1793468543.9511313, "event": "run_finished", "run": "postgresql-C-Q2-c50-r2-annex", "status": "ok"}
+{"ts": 1793468543.9567683, "event": "run_started", "run": "mongodb-C-Q2-c50-r2-annex"}
+{"ts": 1793468965.7829275, "event": "run_finished", "run": "mongodb-C-Q2-c50-r2-annex", "status": "ok"}
+{"ts": 1793468965.7846344, "event": "run_started", "run": "mongodb-C-Q2-c50-r1-annex"}
+{"ts": 1793469388.1988518, "event": "run_finished", "run": "mongodb-C-Q2-c50-r1-annex", "status": "ok"}
+{"ts": 1793469388.2007806, "event": "run_started", "run": "postgresql-C-Q2-c50-r1-annex"}
+{"ts": 1793469810.8023949, "event": "run_finished", "run": "postgresql-C-Q2-c50-r1-annex", "status": "ok"}
+{"ts": 1793469810.8044271, "event": "run_started", "run": "mongodb-C-Q2-c50-r3-annex"}
+{"ts": 1793470232.671258, "event": "run_finished", "run": "mongodb-C-Q2-c50-r3-annex", "status": "ok"}
+{"ts": 1793470232.6729574, "event": "run_started", "run": "postgresql-C-Q2-c50-r3-annex"}
+{"ts": 1793470655.0044336, "event": "run_finished", "run": "postgresql-C-Q2-c50-r3-annex", "status": "ok"}
+{"ts": 1793470655.0062573, "event": "run_started", "run": "postgresql-A-Q1-c10-r1"}
+{"ts": 1793471077.4163864, "event": "run_finished", "run": "postgresql-A-Q1-c10-r1", "status": "spill"}
+{"ts": 1793471077.418153, "event": "run_started", "run": "postgresql-A-Q1-c50-r1"}
+{"ts": 1793471499.8464866, "event": "run_finished", "run": "postgresql-A-Q1-c50-r1", "status": "spill"}
+{"ts": 1793471499.848066, "event": "run_started", "run": "postgresql-A-Q1-c50-r2"}
+{"ts": 1793471922.4217322, "event": "run_finished", "run": "postgresql-A-Q1-c50-r2", "status": "spill"}
+{"ts": 1793471922.4292648, "event": "run_started", "run": "postgresql-A-Q1-c10-r2"}
+{"ts": 1793472345.5445323, "event": "run_finished", "run": "postgresql-A-Q1-c10-r2", "status": "spill"}
+{"ts": 1793472345.5462658, "event": "run_started", "run": "postgresql-A-Q1-c50-r3"}
+{"ts": 1793472768.0363035, "event": "run_finished", "run": "postgresql-A-Q1-c50-r3", "status": "spill"}
+{"ts": 1793472768.0381384, "event": "run_started", "run": "postgresql-A-Q1-c10-r3"}
+{"ts": 1793473190.4840314, "event": "run_finished", "run": "postgresql-A-Q1-c10-r3", "status": "spill"}
+{"ts": 1793473242.1718457, "event": "done"}
+{"ts": 1793474434.4678843, "event": "plan_extended", "added": 48}
+{"ts": 1793474447.8248675, "event": "resumed"}
+{"ts": 1793474448.668577, "event": "run_started", "run": "postgresql-A-Q2-c50-r2-annex"}
+{"ts": 1793474870.9675567, "event": "run_finished", "run": "postgresql-A-Q2-c50-r2-annex", "status": "ok"}
+{"ts": 1793474870.9732337, "event": "run_started", "run": "mongodb-B-Q2-c10-r2-annex"}
+{"ts": 1793475293.0568728, "event": "run_finished", "run": "mongodb-B-Q2-c10-r2-annex", "status": "ok"}
+{"ts": 1793475293.0587635, "event": "run_started", "run": "postgresql-A-Q2-c1-r2-annex"}
+{"ts": 1793475715.396529, "event": "run_finished", "run": "postgresql-A-Q2-c1-r2-annex", "status": "ok"}
+{"ts": 1793475715.3984811, "event": "run_started", "run": "postgresql-A-Q2-c1-r3-annex"}
+{"ts": 1793476137.8460622, "event": "run_finished", "run": "postgresql-A-Q2-c1-r3-annex", "status": "ok"}
+{"ts": 1793476137.8479462, "event": "run_started", "run": "mongodb-A-Q2-c50-r1-annex"}
+{"ts": 1793476559.7940671, "event": "run_finished", "run": "mongodb-A-Q2-c50-r1-annex", "status": "ok"}
+{"ts": 1793476559.795835, "event": "run_started", "run": "mongodb-C-Q2-c10-r2-annex"}
+{"ts": 1793476982.0692203, "event": "run_finished", "run": "mongodb-C-Q2-c10-r2-annex", "status": "ok"}
+{"ts": 1793476982.071247, "event": "run_started", "run": "mongodb-A-Q2-c1-r1-annex"}
+{"ts": 1793477403.8701203, "event": "run_finished", "run": "mongodb-A-Q2-c1-r1-annex", "status": "ok"}
+{"ts": 1793477403.8720427, "event": "run_started", "run": "postgresql-A-Q2-c50-r1-annex"}
+{"ts": 1793477826.2859187, "event": "run_finished", "run": "postgresql-A-Q2-c50-r1-annex", "status": "ok"}
+{"ts": 1793477826.2878704, "event": "run_started", "run": "mongodb-B-Q2-c50-r3-annex"}
+{"ts": 1793478248.2554133, "event": "run_finished", "run": "mongodb-B-Q2-c50-r3-annex", "status": "ok"}
+{"ts": 1793478248.2572603, "event": "run_started", "run": "postgresql-B-Q2-c10-r2-annex"}
+{"ts": 1793478670.5626676, "event": "run_finished", "run": "postgresql-B-Q2-c10-r2-annex", "status": "ok"}
+{"ts": 1793478670.5645332, "event": "run_started", "run": "postgresql-B-Q2-c50-r1-annex"}
+{"ts": 1793479092.8727772, "event": "run_finished", "run": "postgresql-B-Q2-c50-r1-annex", "status": "ok"}
+{"ts": 1793479092.8746905, "event": "run_started", "run": "mongodb-C-Q2-c10-r1-annex"}
+{"ts": 1793479514.835015, "event": "run_finished", "run": "mongodb-C-Q2-c10-r1-annex", "status": "ok"}
+{"ts": 1793479514.8377073, "event": "run_started", "run": "mongodb-B-Q2-c10-r3-annex"}
+{"ts": 1793479936.9606795, "event": "run_finished", "run": "mongodb-B-Q2-c10-r3-annex", "status": "ok"}
+{"ts": 1793479937.8582997, "event": "paused"}
+{"ts": 1793502461.476061, "event": "resumed"}
+{"ts": 1793502462.4394548, "event": "run_started", "run": "postgresql-A-Q2-c50-r3-annex"}
+{"ts": 1793502885.1611304, "event": "run_finished", "run": "postgresql-A-Q2-c50-r3-annex", "status": "ok"}
+{"ts": 1793502885.1631155, "event": "run_started", "run": "mongodb-A-Q2-c1-r3-annex"}
+{"ts": 1793503307.1027064, "event": "run_finished", "run": "mongodb-A-Q2-c1-r3-annex", "status": "ok"}
+{"ts": 1793503307.104786, "event": "run_started", "run": "postgresql-B-Q2-c50-r2-annex"}
+{"ts": 1793503729.5655303, "event": "run_finished", "run": "postgresql-B-Q2-c50-r2-annex", "status": "ok"}
+{"ts": 1793503729.5674398, "event": "run_started", "run": "postgresql-B-Q2-c1-r1-annex"}
+{"ts": 1793504151.9086027, "event": "run_finished", "run": "postgresql-B-Q2-c1-r1-annex", "status": "ok"}
+{"ts": 1793504151.9105833, "event": "run_started", "run": "mongodb-B-Q2-c50-r2-annex"}
+{"ts": 1793504574.3276644, "event": "run_finished", "run": "mongodb-B-Q2-c50-r2-annex", "status": "ok"}
+{"ts": 1793504574.3295681, "event": "run_started", "run": "mongodb-A-Q2-c1-r2-annex"}
+{"ts": 1793504996.2849016, "event": "run_finished", "run": "mongodb-A-Q2-c1-r2-annex", "status": "ok"}
+{"ts": 1793504996.2868521, "event": "run_started", "run": "mongodb-B-Q2-c1-r2-annex"}
+{"ts": 1793505418.0766878, "event": "run_finished", "run": "mongodb-B-Q2-c1-r2-annex", "status": "ok"}
+{"ts": 1793505418.0786858, "event": "run_started", "run": "mongodb-A-Q2-c50-r2-annex"}
+{"ts": 1793505840.10973, "event": "run_finished", "run": "mongodb-A-Q2-c50-r2-annex", "status": "ok"}
+{"ts": 1793505840.1116848, "event": "run_started", "run": "postgresql-B-Q2-c1-r3-annex"}
+{"ts": 1793506262.4269366, "event": "run_finished", "run": "postgresql-B-Q2-c1-r3-annex", "status": "ok"}
+{"ts": 1793506262.4289935, "event": "run_started", "run": "mongodb-A-Q2-c10-r1-annex"}
+{"ts": 1793506684.3720143, "event": "run_finished", "run": "mongodb-A-Q2-c10-r1-annex", "status": "ok"}
+{"ts": 1793506684.3740277, "event": "run_started", "run": "postgresql-C-Q2-c1-r2-annex"}
+{"ts": 1793507106.6695518, "event": "run_finished", "run": "postgresql-C-Q2-c1-r2-annex", "status": "ok"}
+{"ts": 1793507106.6713908, "event": "run_started", "run": "postgresql-C-Q2-c10-r3-annex"}
+{"ts": 1793507528.9351273, "event": "run_finished", "run": "postgresql-C-Q2-c10-r3-annex", "status": "ok"}
+{"ts": 1793507528.9371388, "event": "run_started", "run": "postgresql-C-Q2-c1-r3-annex"}
+{"ts": 1793507951.2348838, "event": "run_finished", "run": "postgresql-C-Q2-c1-r3-annex", "status": "ok"}
+{"ts": 1793507951.2368202, "event": "run_started", "run": "mongodb-B-Q2-c1-r1-annex"}
+{"ts": 1793508372.9823775, "event": "run_finished", "run": "mongodb-B-Q2-c1-r1-annex", "status": "ok"}
+{"ts": 1793508372.9844146, "event": "run_started", "run": "postgresql-A-Q2-c10-r3-annex"}
+{"ts": 1793508795.351919, "event": "run_finished", "run": "postgresql-A-Q2-c10-r3-annex", "status": "ok"}
+{"ts": 1793508795.3538492, "event": "run_started", "run": "postgresql-A-Q2-c10-r2-annex"}
+{"ts": 1793509217.9631138, "event": "run_finished", "run": "postgresql-A-Q2-c10-r2-annex", "status": "ok"}
+{"ts": 1793509217.968857, "event": "run_started", "run": "postgresql-A-Q2-c10-r1-annex"}
+{"ts": 1793509640.4060805, "event": "run_finished", "run": "postgresql-A-Q2-c10-r1-annex", "status": "ok"}
+{"ts": 1793509640.408162, "event": "run_started", "run": "mongodb-B-Q2-c50-r1-annex"}
+{"ts": 1793510063.072069, "event": "run_finished", "run": "mongodb-B-Q2-c50-r1-annex", "status": "ok"}
+{"ts": 1793510063.0742364, "event": "run_started", "run": "postgresql-C-Q2-c10-r1-annex"}
+{"ts": 1793510485.457621, "event": "run_finished", "run": "postgresql-C-Q2-c10-r1-annex", "status": "ok"}
+{"ts": 1793510485.459432, "event": "run_started", "run": "postgresql-B-Q2-c1-r2-annex"}
+{"ts": 1793510907.9587958, "event": "run_finished", "run": "postgresql-B-Q2-c1-r2-annex", "status": "ok"}
+{"ts": 1793510907.9610918, "event": "run_started", "run": "postgresql-B-Q2-c10-r3-annex"}
+{"ts": 1793511330.2864647, "event": "run_finished", "run": "postgresql-B-Q2-c10-r3-annex", "status": "ok"}
+{"ts": 1793511330.2883549, "event": "run_started", "run": "mongodb-C-Q2-c1-r2-annex"}
+{"ts": 1793511752.0794063, "event": "run_finished", "run": "mongodb-C-Q2-c1-r2-annex", "status": "ok"}
+{"ts": 1793511752.0813498, "event": "run_started", "run": "mongodb-C-Q2-c1-r1-annex"}
+{"ts": 1793512173.937965, "event": "run_finished", "run": "mongodb-C-Q2-c1-r1-annex", "status": "ok"}
+{"ts": 1793512173.939758, "event": "run_started", "run": "postgresql-C-Q2-c10-r2-annex"}
+{"ts": 1793512596.2695937, "event": "run_finished", "run": "postgresql-C-Q2-c10-r2-annex", "status": "ok"}
+{"ts": 1793512596.271634, "event": "run_started", "run": "mongodb-A-Q2-c10-r2-annex"}
+{"ts": 1793513018.110896, "event": "run_finished", "run": "mongodb-A-Q2-c10-r2-annex", "status": "ok"}
+{"ts": 1793513018.112873, "event": "run_started", "run": "mongodb-B-Q2-c1-r3-annex"}
+{"ts": 1793513439.9899008, "event": "run_finished", "run": "mongodb-B-Q2-c1-r3-annex", "status": "ok"}
+{"ts": 1793513439.9918187, "event": "run_started", "run": "postgresql-B-Q2-c10-r1-annex"}
+{"ts": 1793513862.4409685, "event": "run_finished", "run": "postgresql-B-Q2-c10-r1-annex", "status": "ok"}
+{"ts": 1793513862.4429042, "event": "run_started", "run": "mongodb-B-Q2-c10-r1-annex"}
+{"ts": 1793514284.8619585, "event": "run_finished", "run": "mongodb-B-Q2-c10-r1-annex", "status": "ok"}
+{"ts": 1793514284.8638985, "event": "run_started", "run": "mongodb-A-Q2-c50-r3-annex"}
+{"ts": 1793514709.7403827, "event": "run_finished", "run": "mongodb-A-Q2-c50-r3-annex", "status": "ok"}
+{"ts": 1793514709.7423756, "event": "run_started", "run": "mongodb-C-Q2-c1-r3-annex"}
+{"ts": 1793515131.6303093, "event": "run_finished", "run": "mongodb-C-Q2-c1-r3-annex", "status": "ok"}
+{"ts": 1793515131.6322596, "event": "run_started", "run": "mongodb-A-Q2-c10-r3-annex"}
+{"ts": 1793515553.852044, "event": "run_finished", "run": "mongodb-A-Q2-c10-r3-annex", "status": "ok"}
+{"ts": 1793515553.8539472, "event": "run_started", "run": "postgresql-A-Q2-c1-r1-annex"}
+{"ts": 1793515976.2049968, "event": "run_finished", "run": "postgresql-A-Q2-c1-r1-annex", "status": "ok"}
+{"ts": 1793515976.206967, "event": "run_started", "run": "postgresql-C-Q2-c1-r1-annex"}
+{"ts": 1793516398.548504, "event": "run_finished", "run": "postgresql-C-Q2-c1-r1-annex", "status": "ok"}
+{"ts": 1793516398.5505707, "event": "run_started", "run": "mongodb-C-Q2-c10-r3-annex"}
+{"ts": 1793516820.474486, "event": "run_finished", "run": "mongodb-C-Q2-c10-r3-annex", "status": "ok"}
+{"ts": 1793516820.476651, "event": "run_started", "run": "postgresql-B-Q2-c50-r3-annex"}
+{"ts": 1793517242.8126817, "event": "run_finished", "run": "postgresql-B-Q2-c50-r3-annex", "status": "ok"}
+{"ts": 1793517266.3004897, "event": "done"}

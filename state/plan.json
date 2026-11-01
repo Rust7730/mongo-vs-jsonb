@@ -1,0 +1,1460 @@
+[
+ {
+  "id": "mongodb-C-Q1-c1-r1",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q1",
+  "concurrency": 1,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-C-Q2-c50-r1",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-A-Q1-c10-r1",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q1",
+  "concurrency": 10,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-B-Q2-c50-r1",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-C-Q1-c1-r1",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q1",
+  "concurrency": 1,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-C-Q2-c1-r1",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-C-Q2-c1-r1",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-B-Q2-c50-r1",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-B-Q1-c1-r1",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q1",
+  "concurrency": 1,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-B-Q1-c1-r1",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q1",
+  "concurrency": 1,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-B-Q1-c10-r1",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q1",
+  "concurrency": 10,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-C-Q2-c50-r1",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-A-Q2-c10-r1",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-B-Q2-c10-r1",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-B-Q2-c1-r1",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-A-Q1-c1-r1",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q1",
+  "concurrency": 1,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-C-Q1-c10-r1",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q1",
+  "concurrency": 10,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-A-Q2-c50-r1",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-A-Q1-c10-r1",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q1",
+  "concurrency": 10,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-A-Q2-c10-r1",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-C-Q1-c10-r1",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q1",
+  "concurrency": 10,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-B-Q2-c1-r1",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-B-Q2-c10-r1",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-A-Q2-c1-r1",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-C-Q1-c50-r1",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q1",
+  "concurrency": 50,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-A-Q1-c50-r1",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q1",
+  "concurrency": 50,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-B-Q1-c50-r1",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q1",
+  "concurrency": 50,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-A-Q1-c1-r1",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q1",
+  "concurrency": 1,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-C-Q2-c10-r1",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-B-Q1-c10-r1",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q1",
+  "concurrency": 10,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-A-Q2-c50-r1",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-A-Q1-c50-r1",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q1",
+  "concurrency": 50,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-B-Q1-c50-r1",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q1",
+  "concurrency": 50,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-A-Q2-c1-r1",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-C-Q1-c50-r1",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q1",
+  "concurrency": 50,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-C-Q2-c10-r1",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 1,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-C-Q2-c1-r2",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-B-Q2-c10-r2",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-C-Q1-c10-r2",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q1",
+  "concurrency": 10,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-B-Q2-c1-r2",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-B-Q1-c10-r2",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q1",
+  "concurrency": 10,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-C-Q1-c50-r2",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q1",
+  "concurrency": 50,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-C-Q1-c10-r2",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q1",
+  "concurrency": 10,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-C-Q2-c50-r2",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-B-Q2-c10-r2",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-C-Q2-c50-r2",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-C-Q1-c1-r2",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q1",
+  "concurrency": 1,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-B-Q1-c10-r2",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q1",
+  "concurrency": 10,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-C-Q1-c1-r2",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q1",
+  "concurrency": 1,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-A-Q1-c10-r2",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q1",
+  "concurrency": 10,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-C-Q2-c10-r2",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-A-Q2-c10-r2",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-A-Q2-c1-r2",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-B-Q1-c50-r2",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q1",
+  "concurrency": 50,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-A-Q2-c1-r2",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-A-Q2-c10-r2",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-B-Q1-c1-r2",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q1",
+  "concurrency": 1,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-A-Q1-c1-r2",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q1",
+  "concurrency": 1,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-C-Q2-c10-r2",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-B-Q1-c50-r2",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q1",
+  "concurrency": 50,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-A-Q2-c50-r2",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-B-Q2-c50-r2",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-A-Q1-c50-r2",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q1",
+  "concurrency": 50,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-C-Q1-c50-r2",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q1",
+  "concurrency": 50,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-A-Q1-c1-r2",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q1",
+  "concurrency": 1,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-A-Q2-c50-r2",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-A-Q1-c50-r2",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q1",
+  "concurrency": 50,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-B-Q2-c1-r2",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-B-Q1-c1-r2",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q1",
+  "concurrency": 1,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-A-Q1-c10-r2",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q1",
+  "concurrency": 10,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-C-Q2-c1-r2",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-B-Q2-c50-r2",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 2,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-C-Q1-c50-r3",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q1",
+  "concurrency": 50,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-C-Q2-c1-r3",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-A-Q2-c1-r3",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-C-Q2-c1-r3",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-A-Q1-c50-r3",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q1",
+  "concurrency": 50,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-A-Q1-c50-r3",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q1",
+  "concurrency": 50,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-C-Q1-c1-r3",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q1",
+  "concurrency": 1,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-A-Q1-c10-r3",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q1",
+  "concurrency": 10,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-C-Q1-c1-r3",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q1",
+  "concurrency": 1,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-A-Q2-c50-r3",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-B-Q2-c1-r3",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-A-Q1-c1-r3",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q1",
+  "concurrency": 1,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-B-Q1-c10-r3",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q1",
+  "concurrency": 10,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-C-Q1-c50-r3",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q1",
+  "concurrency": 50,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-B-Q2-c10-r3",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-C-Q2-c50-r3",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-B-Q2-c50-r3",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-A-Q2-c10-r3",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-A-Q1-c10-r3",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q1",
+  "concurrency": 10,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-C-Q1-c10-r3",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q1",
+  "concurrency": 10,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-A-Q2-c50-r3",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-C-Q2-c10-r3",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-B-Q2-c50-r3",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-C-Q2-c10-r3",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-B-Q1-c50-r3",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q1",
+  "concurrency": 50,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-A-Q1-c1-r3",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q1",
+  "concurrency": 1,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-B-Q1-c50-r3",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q1",
+  "concurrency": 50,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-A-Q2-c1-r3",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-B-Q2-c10-r3",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-B-Q1-c1-r3",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q1",
+  "concurrency": 1,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-B-Q1-c10-r3",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q1",
+  "concurrency": 10,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-C-Q2-c50-r3",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-B-Q2-c1-r3",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-C-Q1-c10-r3",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q1",
+  "concurrency": 10,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-B-Q1-c1-r3",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q1",
+  "concurrency": 1,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "mongodb-A-Q2-c10-r3",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 3,
+  "variant": "strict"
+ },
+ {
+  "id": "postgresql-C-Q2-c50-r2-annex",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 2,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-C-Q2-c50-r2-annex",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 2,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-C-Q2-c50-r1-annex",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 1,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-C-Q2-c50-r1-annex",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 1,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-C-Q2-c50-r3-annex",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 3,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-C-Q2-c50-r3-annex",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 3,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-A-Q2-c50-r2-annex",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 2,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-B-Q2-c10-r2-annex",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 2,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-A-Q2-c1-r2-annex",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 2,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-A-Q2-c1-r3-annex",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 3,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-A-Q2-c50-r1-annex",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 1,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-C-Q2-c10-r2-annex",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 2,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-A-Q2-c1-r1-annex",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 1,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-A-Q2-c50-r1-annex",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 1,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-B-Q2-c50-r3-annex",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 3,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-B-Q2-c10-r2-annex",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 2,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-B-Q2-c50-r1-annex",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 1,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-C-Q2-c10-r1-annex",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 1,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-B-Q2-c10-r3-annex",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 3,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-A-Q2-c50-r3-annex",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 3,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-A-Q2-c1-r3-annex",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 3,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-B-Q2-c50-r2-annex",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 2,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-B-Q2-c1-r1-annex",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 1,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-B-Q2-c50-r2-annex",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 2,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-A-Q2-c1-r2-annex",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 2,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-B-Q2-c1-r2-annex",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 2,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-A-Q2-c50-r2-annex",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 2,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-B-Q2-c1-r3-annex",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 3,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-A-Q2-c10-r1-annex",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 1,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-C-Q2-c1-r2-annex",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 2,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-C-Q2-c10-r3-annex",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 3,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-C-Q2-c1-r3-annex",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 3,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-B-Q2-c1-r1-annex",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 1,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-A-Q2-c10-r3-annex",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 3,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-A-Q2-c10-r2-annex",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 2,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-A-Q2-c10-r1-annex",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 1,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-B-Q2-c50-r1-annex",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 1,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-C-Q2-c10-r1-annex",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 1,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-B-Q2-c1-r2-annex",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 2,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-B-Q2-c10-r3-annex",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 3,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-C-Q2-c1-r2-annex",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 2,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-C-Q2-c1-r1-annex",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 1,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-C-Q2-c10-r2-annex",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 2,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-A-Q2-c10-r2-annex",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 2,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-B-Q2-c1-r3-annex",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 3,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-B-Q2-c10-r1-annex",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 1,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-B-Q2-c10-r1-annex",
+  "engine": "mongodb",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 1,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-A-Q2-c50-r3-annex",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 3,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-C-Q2-c1-r3-annex",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 3,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-A-Q2-c10-r3-annex",
+  "engine": "mongodb",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 3,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-A-Q2-c1-r1-annex",
+  "engine": "postgresql",
+  "profile": "A",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 1,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-C-Q2-c1-r1-annex",
+  "engine": "postgresql",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 1,
+  "rep": 1,
+  "variant": "annex"
+ },
+ {
+  "id": "mongodb-C-Q2-c10-r3-annex",
+  "engine": "mongodb",
+  "profile": "C",
+  "query": "Q2",
+  "concurrency": 10,
+  "rep": 3,
+  "variant": "annex"
+ },
+ {
+  "id": "postgresql-B-Q2-c50-r3-annex",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q2",
+  "concurrency": 50,
+  "rep": 3,
+  "variant": "annex"
+ }
+]

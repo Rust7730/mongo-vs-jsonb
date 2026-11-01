@@ -1,0 +1,7 @@
+{
+ "count": 500000,
+ "total": 229397032.51,
+ "completed": 399714,
+ "avg_doc_bytes": 1114.116568,
+ "source": "/home/rustless/PracticaBD/data/orders.ndjson"
+}

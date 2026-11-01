@@ -1,0 +1,54 @@
+{
+ "mongodb_q2": {
+  "A": {
+   "cache_wt_mb": 1536.0,
+   "coleccion_comprimida_mb": 228,
+   "coleccion_sin_comprimir_mb": 571,
+   "releido_en_2a_ejecucion_mb": 0.0,
+   "segundos_2a_ejecucion": 0.35
+  },
+  "B": {
+   "cache_wt_mb": 512.0,
+   "coleccion_comprimida_mb": 228,
+   "coleccion_sin_comprimir_mb": 571,
+   "releido_en_2a_ejecucion_mb": 3485.3,
+   "segundos_2a_ejecucion": 1.69
+  },
+  "C": {
+   "cache_wt_mb": 256.0,
+   "coleccion_comprimida_mb": 228,
+   "coleccion_sin_comprimir_mb": 571,
+   "releido_en_2a_ejecucion_mb": 9120.8,
+   "segundos_2a_ejecucion": 3.85
+  }
+ },
+ "postgresql_q1": {
+  "4MB": {
+   "nodo_raiz": "GroupAggregate",
+   "disco_kb": 721432,
+   "sort_metodos": [
+    "external merge",
+    "quicksort"
+   ],
+   "milisegundos": 7026.6
+  },
+  "64MB": {
+   "nodo_raiz": "GroupAggregate",
+   "disco_kb": 721280,
+   "sort_metodos": [
+    "external merge",
+    "quicksort"
+   ],
+   "milisegundos": 3881.949
+  },
+  "256MB": {
+   "nodo_raiz": "GroupAggregate",
+   "disco_kb": 515168,
+   "sort_metodos": [
+    "external merge",
+    "quicksort"
+   ],
+   "milisegundos": 3817.424
+  }
+ }
+}

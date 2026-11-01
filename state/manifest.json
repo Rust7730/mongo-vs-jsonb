@@ -1,0 +1,17 @@
+{
+ "benchmark_runner/classify.py": "b3dca1f2cfef6a31ad75686883c02cd60c663df5bdbb2b785293514bc40a375d",
+ "benchmark_runner/config.py": "1d7318a2941b2d980a765effbef9a433011416c3cb62506db008eca8cffea95a",
+ "benchmark_runner/stats.py": "38193aedcf72dc2576ca671cd2066b843acc69de6c18dc52176315f043ef6a29",
+ "benchmark_runner/workers.py": "5da1fc12da685f790b8290c9044eb7f392dfd80c1a58f9387eea2cbd043b1f23",
+ "data/orders.ndjson": "9cd202a6e102ad8e97ebd094f362051f6d46deea98fa0b0a1d5e4f3bad2c0e6f",
+ "docker-compose.yml": "e1c5a088736222b8302ec710f69d975b63780e5d8dd435a2caa9e805ee4d6f99",
+ "profiles/A.env": "7061eb9b81337eb6d9fce59f9aa8be0005da9ce4a7d6c60e585c1e2695a2ffd7",
+ "profiles/B.env": "a45ba2664a03b513d0172c56d2cf2dd95cd7b5a3dc70d5aeca679e5efe6ecafd",
+ "profiles/C.env": "f5311112993b939a5e734ef6de4262bb3a3a36437223ba010aa6c7ca711a2455",
+ "queries/q1.mongo.json": "b14f146081461907717c6bbffa320c7e295bdcf07fc0ce2ddf6461937de6d48a",
+ "queries/q1.pg.sql": "1677fe3131fb86c10d5743b913b87e2f1eac9d70ad7c57170e58ee55acab89e2",
+ "queries/q2.mongo.json": "c574c5258bc780550f200e1522e5670ebc534eb66b945a1f0add52b438cfc1b6",
+ "queries/q2.pg.sql": "3863ca5fee612038e3718dba0c437ee52a729801538012c6e1360b92ed2db183",
+ "queries/setup.pg.sql": "3c8d20ccd9572f20c703c88c9d2fd52ff424122f598a52265adf6ca94d92368b",
+ "telemetry/prometheus.yml": "4d6144e8fd3b322d3e80b26d96d30c8cbaf32375b81e77d30ed2df38c18ed968"
+}

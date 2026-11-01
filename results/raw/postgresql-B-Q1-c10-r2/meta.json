@@ -1,0 +1,47 @@
+{
+ "run": {
+  "id": "postgresql-B-Q1-c10-r2",
+  "engine": "postgresql",
+  "profile": "B",
+  "query": "Q1",
+  "concurrency": 10,
+  "rep": 2,
+  "variant": "strict"
+ },
+ "signals": {
+  "completed": 87,
+  "censored": 10,
+  "memory_errors": 0,
+  "conn_lost": 0,
+  "other_errors": 0,
+  "oom_kills": 0,
+  "spill": true,
+  "telemetry_ok": true
+ },
+ "verdict": {
+  "fault": false,
+  "status": "spill",
+  "reason": "disk_spill"
+ },
+ "noisy": false,
+ "idle_sibling_busy_pct": 24.390383843020253,
+ "cpu_seconds": 494.678421,
+ "cgroup_throttled_seconds": 304.548925,
+ "nr_throttled_final": 2571,
+ "memory_peak_bytes": 2147684352,
+ "anon_final": 5525504,
+ "shmem_final": 573964288,
+ "file_final": 1088319488,
+ "before": {
+  "temp_files": 497,
+  "temp_bytes": 45223960576
+ },
+ "after": {
+  "temp_files": 1478,
+  "temp_bytes": 136518803456
+ },
+ "written_bytes": 32096477184,
+ "hung_clients": 0,
+ "prometheus_samples": 300.0,
+ "metric_source": "prometheus"
+}

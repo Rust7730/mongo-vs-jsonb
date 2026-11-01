@@ -1,0 +1,26 @@
+{
+ "mongodb-False": {
+  "resultado": "ok",
+  "segundos": 5.1,
+  "usedDisk": false,
+  "spills": [
+   0
+  ]
+ },
+ "mongodb-True": {
+  "resultado": "ok",
+  "segundos": 4.0,
+  "usedDisk": false,
+  "spills": [
+   0
+  ]
+ },
+ "postgresql-4MB": {
+  "resultado": "ok",
+  "sort": "Sort Method: external merge  Disk: 4096kB"
+ },
+ "postgresql-64MB": {
+  "resultado": "ok",
+  "sort": "Sort Method: quicksort  Memory: 6050kB"
+ }
+}

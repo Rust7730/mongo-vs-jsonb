@@ -1,0 +1,8 @@
+2026-10-31 08:46:37.406 UTC [1725] LOG:  temporary file: path "base/pgsql_tmp/pgsql_tmp1725.0", size 28033024
+2026-10-31 08:46:37.412 UTC [1724] LOG:  temporary file: path "base/pgsql_tmp/pgsql_tmp1724.0", size 8085504
+2026-10-31 08:46:37.414 UTC [1720] LOG:  temporary file: path "base/pgsql_tmp/pgsql_tmp1720.0", size 28033024
+2026-10-31 08:46:37.491 UTC [1721] LOG:  temporary file: path "base/pgsql_tmp/pgsql_tmp1721.0", size 28033024
+2026-10-31 08:46:37.727 UTC [1719] LOG:  temporary file: path "base/pgsql_tmp/pgsql_tmp1719.0", size 24043520
+2026-10-31 08:46:37.828 UTC [1722] LOG:  temporary file: path "base/pgsql_tmp/pgsql_tmp1722.0", size 51970048
+2026-10-31 08:46:37.831 UTC [1723] LOG:  temporary file: path "base/pgsql_tmp/pgsql_tmp1723.0", size 47980544
+cgroup io.stat: 26751176704 bytes escritos con carga de solo lectura
