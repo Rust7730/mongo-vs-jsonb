@@ -1,0 +1,212 @@
+{
+  "documento": {
+    "titulo": "Medición de métricas en bases documentales",
+    "subtitulo": "Contención de CPU y memoria en agregaciones JSON: MongoDB frente a PostgreSQL JSONB",
+    "institucion": "Universidad Politécnica de Chiapas",
+    "carrera": "Ingeniería en Tecnologías de la Información e Innovación Digital (IT2iD)",
+    "asignatura": "Bases de Datos en la Nube",
+    "anio": 2026,
+    "fuente": "playbook.pdf (4 páginas)"
+  },
+
+  "objetivo": "Medir latencia, rendimiento y huella de recursos al ejecutar agregaciones JSON anidadas bajo límites estrictos de CPU (CFS throttling) y memoria con Docker cgroups v2, comparando un motor documental con un motor relacional que almacena documentos en JSONB.",
+
+  "preguntas_metricas": [
+    { "id": "M1", "pregunta": "¿Cómo cambian la latencia P95 y P99 de las agregaciones sobre documentos anidados cuando se limita de forma estricta la CPU y la memoria?", "kpis_clave": ["latency_p95_ms", "latency_p99_ms"] },
+    { "id": "M2", "pregunta": "¿Qué motor usa de forma más eficiente los buffers de ordenamiento y agrupamiento antes de volcar a disco temporal o fallar por falta de memoria (OOM)?", "kpis_clave": ["disk_spill_detected", "oom_killed", "container_memory_rss_bytes"] },
+    { "id": "M3", "pregunta": "¿Cuál es la huella de CPU y memoria por cada 1 000 documentos procesados en el motor documental frente al motor con JSONB?", "kpis_clave": ["container_cpu_cfs_throttled_seconds_total", "container_memory_rss_bytes", "throughput_qps"] }
+  ],
+
+  "motores": [
+    {
+      "id": "mongodb",
+      "motor": "MongoDB",
+      "version": "latest-stable",
+      "storage_engine": "WiredTiger",
+      "modelo_datos": "Colección `orders` sin sharding",
+      "indices": ["timestamp (simple)", "order_id (simple)"]
+    },
+    {
+      "id": "postgresql",
+      "motor": "PostgreSQL",
+      "version": "latest-stable",
+      "modelo_datos": "Tabla `orders` (id UUID PRIMARY KEY, data JSONB)",
+      "ddl_referencia": "CREATE TABLE orders (id UUID PRIMARY KEY, data JSONB);",
+      "indices": ["PK en id", "B-Tree sobre timestamp extraído del JSONB"]
+    }
+  ],
+
+  "perfiles_recursos": {
+    "plataforma": "Docker / cgroups v2",
+    "perfiles": [
+      { "id": "PROFILE_A_BASELINE", "nombre": "Sin contención (Baseline)",              "cpus": 4.0, "memoria": "4096m", "mem_swappiness": 0 },
+      { "id": "PROFILE_B_MEDIUM",   "nombre": "Contención media",                       "cpus": 2.0, "memoria": "2048m", "mem_swappiness": 0 },
+      { "id": "PROFILE_C_SEVERE",   "nombre": "Contención severa (throttling activo)",  "cpus": 1.0, "memoria": "1024m", "mem_swappiness": 0 }
+    ]
+  },
+
+  "dataset": {
+    "registros": 500000,
+    "formato": "JSON",
+    "niveles_anidamiento": 3,
+    "items_promedio_por_registro": 3,
+    "esquema": {
+      "order_id": "UUID",
+      "timestamp": "string ISO-8601",
+      "customer": {
+        "id": "string",
+        "tier": "string",
+        "segment": "string",
+        "geo": {
+          "country": "string",
+          "state": "string",
+          "city": "string",
+          "zip": "string",
+          "coordinates": "[lon, lat] o {lat, lon}"
+        }
+      },
+      "items": [
+        {
+          "sku": "string",
+          "category": "string",
+          "brand": "string",
+          "qty": "number",
+          "price": "number",
+          "tax_pct": "number",
+          "discounts": "number | array"
+        }
+      ],
+      "payment": {
+        "method": "string",
+        "status": "string (p. ej. 'completed')",
+        "transaction_id": "string",
+        "gateway_latency_ms": "number",
+        "totals": "objeto",
+        "final_total": "number (usado por Q2; el PDF lo referencia como payment.final_total)"
+      },
+      "metadata": {
+        "channel": "string",
+        "user_agent": "string",
+        "session_id": "string",
+        "flags": "objeto | array"
+      }
+    },
+    "nota": "El PDF solo define los nombres de los atributos; los tipos marcados como string/number/objeto en subcampos son inferidos para el generador."
+  },
+
+  "cargas_trabajo": [
+    {
+      "id": "Q1",
+      "nombre": "Unwind, Filter & Grouping",
+      "tipo_estres": "Saturación de CPU",
+      "descripcion": "Desanidar el arreglo de ítems, filtrar price > 50, calcular subtotal (qty * price) y agrupar sumatoria y promedio por país y categoría.",
+      "metricas_a_mirar": ["throughput_qps", "latency_p95_ms", "latency_p99_ms", "container_cpu_cfs_throttled_seconds_total (en perfil severo)"],
+      "mongodb_pipeline": [
+        { "$unwind": "$items" },
+        { "$match": { "items.price": { "$gt": 50 } } },
+        {
+          "$group": {
+            "_id": { "country": "$customer.geo.country", "category": "$items.category" },
+            "total_revenue": { "$sum": { "$multiply": ["$items.qty", "$items.price"] } },
+            "avg_revenue": { "$avg": { "$multiply": ["$items.qty", "$items.price"] } },
+            "count": { "$sum": 1 }
+          }
+        }
+      ],
+      "postgresql_sql": "SELECT data->'customer'->'geo'->>'country' AS country, item->>'category' AS category, SUM((item->>'qty')::numeric * (item->>'price')::numeric) AS total_revenue, AVG((item->>'qty')::numeric * (item->>'price')::numeric) AS avg_revenue, COUNT(*) AS count FROM orders, jsonb_array_elements(data->'items') AS item WHERE (item->>'price')::numeric > 50 GROUP BY 1, 2;"
+    },
+    {
+      "id": "Q2",
+      "nombre": "Massive Sort & Top-K",
+      "tipo_estres": "Estrés de buffer (memoria de ordenamiento)",
+      "descripcion": "Filtrar órdenes completadas en un rango de fechas, ordenar descendente por payment.final_total y obtener el Top-1000 sin índices previos en el total.",
+      "metricas_a_mirar": ["disk_spill_detected", "oom_killed", "container_memory_rss_bytes", "throughput_qps"],
+      "variantes_estres_memoria": {
+        "mongodb": [ { "allowDiskUse": false }, { "allowDiskUse": true } ],
+        "postgresql": [ "SET work_mem = '4MB';", "SET work_mem = '64MB';" ]
+      },
+      "mongodb_pipeline": [
+        { "$match": { "payment.status": "completed", "timestamp": { "$gte": "2026-01-01T00:00:00Z" } } },
+        { "$sort": { "payment.final_total": -1 } },
+        { "$limit": 1000 },
+        { "$project": { "order_id": 1, "customer.id": 1, "payment.final_total": 1 } }
+      ],
+      "postgresql_sql": "SELECT data->>'order_id' AS order_id, data->'customer'->>'id' AS customer_id, (data->'payment'->>'final_total')::numeric AS final_total FROM orders WHERE data->'payment'->>'status' = 'completed' AND (data->>'timestamp')::timestamptz >= '2026-01-01 00:00:00Z' ORDER BY (data->'payment'->>'final_total')::numeric DESC LIMIT 1000;"
+    }
+  ],
+
+  "protocolo_ejecucion": {
+    "concurrencias": [1, 10, 50],
+    "repeticiones_por_escenario": 3,
+    "ciclo_vida": [
+      { "fase": "flush_cache", "comando": "sync; echo 3 > /proc/sys/vm/drop_caches" },
+      { "fase": "warmup",      "duracion_s": 60 },
+      { "fase": "medicion",    "duracion_s": 300 },
+      { "fase": "cooldown",    "duracion_s": 60 }
+    ],
+    "duracion_por_corrida_s": 420,
+    "matriz": {
+      "dimensiones": { "motores": 2, "perfiles": 3, "queries": 2, "concurrencias": 3 },
+      "celdas": 36,
+      "repeticiones_por_celda": 3,
+      "corridas_totales": 108,
+      "tiempo_total_estimado": "108 × 7 min ≈ 12.6 h (sin contar variantes de Q2 ni carga de datos)"
+    }
+  },
+
+  "telemetria": {
+    "stack": [
+      { "herramienta": "cAdvisor",      "proposito": "Métricas de contenedor (cgroups v2)" },
+      { "herramienta": "Node Exporter", "proposito": "Métricas de host (I/O, disco, swap)" },
+      { "herramienta": "Prometheus",    "proposito": "Recolección", "scrape_interval": "1s" }
+    ],
+    "kpis": [
+      { "kpi": "throughput_qps",                            "unidad": "queries/s", "tipo": "Performance" },
+      { "kpi": "latency_p50_ms",                            "unidad": "ms",        "tipo": "Performance" },
+      { "kpi": "latency_p95_ms",                            "unidad": "ms",        "tipo": "Performance" },
+      { "kpi": "latency_p99_ms",                            "unidad": "ms",        "tipo": "Performance" },
+      { "kpi": "container_cpu_cfs_throttled_seconds_total", "unidad": "s",         "tipo": "OS / Contention" },
+      { "kpi": "container_memory_rss_bytes",                "unidad": "bytes",     "tipo": "OS / Memory" },
+      { "kpi": "disk_spill_detected",                       "unidad": "boolean",   "tipo": "Engine / Internal" },
+      { "kpi": "oom_killed",                                "unidad": "boolean",   "tipo": "Stability" }
+    ]
+  },
+
+  "entregables": {
+    "repositorio": [
+      { "archivo": "docker-compose.yml",             "descripcion": "Perfiles de recursos parametrizados" },
+      { "archivo": "synthetic_data_generator.py",    "descripcion": "Generador del dataset de 500k" },
+      { "archivo": "benchmark_runner",               "descripcion": "Scripts k6 o Python multiproceso" },
+      { "archivo": "queries/",                       "descripcion": "Agregaciones MongoDB y SQL PostgreSQL" },
+      { "archivo": "run_benchmarks.sh",              "descripcion": "Automatización de la matriz de mediciones" }
+    ],
+    "csv_mediciones": {
+      "columnas": [
+        "timestamp_epoch", "engine", "profile", "query_id", "concurrency", "run_number",
+        "throughput_qps", "latency_p50_ms", "latency_p95_ms", "latency_p99_ms",
+        "cpu_throttled_seconds", "max_rss_mb", "disk_spill", "status"
+      ],
+      "header": "timestamp_epoch,engine,profile,query_id,concurrency,run_number,throughput_qps,latency_p50_ms,latency_p95_ms,latency_p99_ms,cpu_throttled_seconds,max_rss_mb,disk_spill,status"
+    },
+    "reporte_secciones": [
+      { "n": 1, "titulo": "Especificaciones del host y del entorno Docker" },
+      { "n": 2, "titulo": "Método de medición y verificación del baseline" },
+      { "n": 3, "titulo": "Resultados consolidados (throughput, P95/P99, tiempo de throttling)" },
+      { "n": 4, "titulo": "Análisis gráfico (P99 vs concurrencia, throttling vs QPS, curva RSS)" },
+      { "n": 5, "titulo": "Planes de ejecución (explain executionStats frente a EXPLAIN ANALYZE BUFFERS)" },
+      { "n": 6, "titulo": "Interpretación: límites de memoria, volcado a disco y throttling de cgroups" },
+      { "n": 7, "titulo": "Recomendaciones técnicas para despliegues documentales en la nube" }
+    ]
+  },
+
+  "notas_tecnicas": [
+    "Las variantes de Q2 (allowDiskUse false/true y work_mem 4MB/64MB) no están incluidas en el conteo de 36 celdas. Si se corren ambas, las celdas de Q2 pasan de 18 a 36 y la matriz queda en 54 celdas (162 corridas, ≈18.9 h). Conviene confirmarlo con el docente.",
+    "En MongoDB el filtro de fecha de Q2 compara timestamp como string ISO-8601; si el generador guarda timestamp como Date, el $match debe usar ISODate(...) para que coincida.",
+    "En PostgreSQL no se puede indexar directamente ((data->>'timestamp')::timestamptz): el cast text→timestamptz depende del parámetro TimeZone y no es IMMUTABLE (error 'functions in index expression must be marked IMMUTABLE'). Una columna generada con ese mismo cast falla por la misma razón. Opciones: función envoltorio IMMUTABLE con zona fija (UTC) usada igual en el índice y en el WHERE, o indexar el texto (data->>'timestamp') y comparar como texto, válido si todas las fechas tienen el mismo formato ISO-8601 en UTC.",
+    "mem_swappiness: el control memory.swappiness no existe en cgroups v2. Docker lo descarta con el aviso 'Memory swappiness discarded' y crun/podman lo rechazan. En la sección 1 del reporte hay que indicar que no se aplicó y, si se quiere evitar swap, usar --memory-swap igual a --memory.",
+    "drop_caches requiere privilegios de root en el host, no dentro del contenedor.",
+    "Nombres reales en cAdvisor: la RSS se expone como container_memory_rss (en bytes); container_memory_rss_bytes, como aparece en el PDF, no existe en cAdvisor. El OOM se observa con container_oom_events_total o con docker inspect (State.OOMKilled). container_cpu_cfs_throttled_seconds_total sí existe con ese nombre.",
+    "Riesgo de diseño en Q2: tanto MongoDB ($sort seguido de $limit se fusionan y solo se mantienen n=1000 documentos en memoria) como PostgreSQL (ORDER BY … LIMIT usa 'top-N heapsort') optimizan el Top-K, así que es probable que Q2 no haga spill ni con work_mem=4MB ni con allowDiskUse:false. Hay que confirmarlo en la celda piloto con explain/EXPLAIN ANALYZE y comentarlo con el docente antes de correr la matriz completa.",
+    "Desde MongoDB 6.0, allowDiskUseByDefault=true: los stages que superan 100 MB ya escriben a disco por defecto, así que la variante allowDiskUse:true equivale al comportamiento normal. Con allowDiskUse:false, un stage que supera los 100 MB falla con error del motor (no es un OOM del kernel)."
+  ]
+}

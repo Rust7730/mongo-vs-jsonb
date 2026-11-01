@@ -1,0 +1,2725 @@
+{
+  "meta": {
+    "nombre": "KG · Medición de métricas en bases documentales (MongoDB vs PostgreSQL JSONB)",
+    "fuentes": [
+      "playbook.pdf",
+      "playbook_sesion.pdf"
+    ],
+    "version": "1.0",
+    "fecha": "2026-10-30",
+    "conteo": {
+      "nodos": 134,
+      "aristas": 293,
+      "tipos_nodo": 35,
+      "tipos_relacion": 92
+    },
+    "convenciones": "Nodos con id único, tipo y nombre; aristas dirigidas origen -[relacion]-> destino. Las transformaciones KPI→columna CSV y la detección de spill/OOM son inferencias técnicas, no texto literal de los PDFs."
+  },
+  "ontologia": {
+    "tipos_nodo": [
+      "Actividad",
+      "Actor",
+      "Almacen",
+      "Campo",
+      "ColumnaCSV",
+      "Concepto",
+      "Concurrencia",
+      "Dataset",
+      "Documento",
+      "EntidadDocumento",
+      "Entregable",
+      "EstadoCorrida",
+      "FaseCiclo",
+      "HerramientaTelemetria",
+      "Implementacion",
+      "Indice",
+      "Infraestructura",
+      "KPI",
+      "MatrizExperimental",
+      "Motor",
+      "Operador",
+      "ParametroMotor",
+      "Paso",
+      "PerfilRecursos",
+      "PlanEjecucion",
+      "PreguntaGuia",
+      "PreguntaMetrica",
+      "PreguntaRevisor",
+      "Protocolo",
+      "Query",
+      "Script",
+      "SeccionReporte",
+      "StorageEngine",
+      "UnidadExperimental",
+      "VarianteEstres"
+    ],
+    "tipos_relacion": [
+      "AGRUPA_POR",
+      "ALIMENTA",
+      "ALMACENA_EN",
+      "ANALIZA",
+      "ANIDA",
+      "ANIDA_ARREGLO",
+      "APLICA_PERFIL",
+      "APORTA_A",
+      "AUTOMATIZA",
+      "CALCULA_CON",
+      "COMPARA",
+      "COMPARA_MOTOR",
+      "COMPLEMENTA",
+      "COMPUESTA_DE",
+      "CONFIGURA",
+      "CONSOLIDA",
+      "CONTIENE",
+      "CONTROLA",
+      "CORRE_EN",
+      "CUANTIFICA",
+      "DEFINE",
+      "DEFINE_CONCURRENCIA",
+      "DEGRADA",
+      "DESCRIBE",
+      "DIMENSION",
+      "DOCUMENTA",
+      "EJECUTA",
+      "EJECUTA_CARGA",
+      "ENTREGA",
+      "EQUIVALE_A",
+      "ESCRIBE",
+      "ESPECIFICA",
+      "ESTRESA",
+      "ES_EVALUADO_POR",
+      "ES_REFERENCIA_PARA",
+      "EXPONE_PARAMETRO",
+      "FIJA_CONTRATO_DE",
+      "FILTRA_POR",
+      "GENERA",
+      "GRAFICA",
+      "IMPLEMENTA",
+      "IMPLEMENTADA_COMO",
+      "IMPONE",
+      "INDEXA",
+      "INDICA",
+      "INTERPRETA",
+      "INVESTIGA",
+      "INVOCA",
+      "LEE",
+      "LEVANTA",
+      "MIDE",
+      "MITIGA",
+      "NIVEL_DE",
+      "OFRECE",
+      "ORDENA_POR",
+      "ORIENTA",
+      "PLANTEA",
+      "PRECEDE_A",
+      "PREGUNTA",
+      "PRODUCE_FILA_EN",
+      "PROVOCA",
+      "PROYECTA",
+      "PUEDE_CAUSAR",
+      "RECOLECTA_DE",
+      "RECOMIENDA",
+      "RECORRE",
+      "REGISTRA",
+      "RESPONDE",
+      "RESPONDE_PRINCIPALMENTE",
+      "SE_CARGA_EN",
+      "SE_DETECTA_CON",
+      "SE_EJECUTA_EN",
+      "SE_OPTIMIZA_CON",
+      "SE_REGISTRA_EN",
+      "SE_REPITE_EN",
+      "SE_RESPONDE_CON",
+      "SE_VERIFICA_EN",
+      "SIGUE",
+      "SIGUIENTE",
+      "SIMULA",
+      "SOBRE",
+      "TIENE_CAMPO",
+      "TIENE_COLUMNA",
+      "TIENE_FASE",
+      "TIENE_INDICE",
+      "TIENE_SECCION",
+      "TIENE_VARIANTE",
+      "TOMA_VALOR",
+      "USA",
+      "USA_OPERADOR",
+      "USA_STORAGE_ENGINE",
+      "VERIFICA"
+    ]
+  },
+  "nodos": [
+    {
+      "id": "DOC_PLAYBOOK",
+      "tipo": "Documento",
+      "nombre": "playbook.pdf",
+      "props": {
+        "rol": "Especificación técnica",
+        "paginas": 4
+      }
+    },
+    {
+      "id": "DOC_SESION",
+      "tipo": "Documento",
+      "nombre": "playbook_sesion.pdf",
+      "props": {
+        "rol": "Contrato de entrega",
+        "diapositivas": 13
+      }
+    },
+    {
+      "id": "ACT",
+      "tipo": "Actividad",
+      "nombre": "Medición de métricas en bases documentales",
+      "props": {
+        "subtitulo": "Contención de CPU y memoria en agregaciones JSON: MongoDB vs PostgreSQL JSONB",
+        "asignatura": "Bases de Datos en la Nube",
+        "carrera": "IT2iD",
+        "institucion": "UP Chiapas",
+        "anio": 2026,
+        "objetivo": "Medir latencia, rendimiento y huella de recursos de agregaciones JSON anidadas bajo límites estrictos de CPU (CFS) y memoria con Docker cgroups v2."
+      }
+    },
+    {
+      "id": "PREG_GUIA",
+      "tipo": "PreguntaGuia",
+      "nombre": "¿Qué medir, cómo ejecutarlo y qué evidencia entregar para que un estudio y un revisor puedan reproducir y cuestionar el resultado?"
+    },
+    {
+      "id": "M1",
+      "tipo": "PreguntaMetrica",
+      "nombre": "M1 · Latencia cola bajo contención",
+      "props": {
+        "texto": "¿Cómo cambian P95 y P99 al limitar CPU y memoria?"
+      }
+    },
+    {
+      "id": "M2",
+      "tipo": "PreguntaMetrica",
+      "nombre": "M2 · Eficiencia de buffers",
+      "props": {
+        "texto": "¿Qué motor usa mejor los buffers de sort/group antes de spill u OOM?"
+      }
+    },
+    {
+      "id": "M3",
+      "tipo": "PreguntaMetrica",
+      "nombre": "M3 · Huella por 1 000 docs",
+      "props": {
+        "texto": "¿Huella de CPU y memoria por cada 1 000 documentos?"
+      }
+    },
+    {
+      "id": "C_CGROUPS",
+      "tipo": "Concepto",
+      "nombre": "cgroups v2",
+      "props": {
+        "definicion": "Mecanismo del kernel Linux que Docker usa para limitar CPU y memoria por contenedor."
+      }
+    },
+    {
+      "id": "C_CFS",
+      "tipo": "Concepto",
+      "nombre": "CFS throttling",
+      "props": {
+        "definicion": "Cuando el contenedor agota su cuota de CPU (cpu.max) en un periodo, el planificador lo pausa hasta el siguiente periodo."
+      }
+    },
+    {
+      "id": "C_SPILL",
+      "tipo": "Concepto",
+      "nombre": "Spill a disco",
+      "props": {
+        "definicion": "El motor vuelca a archivos temporales datos de sort/group que no caben en su buffer de memoria."
+      }
+    },
+    {
+      "id": "C_OOM",
+      "tipo": "Concepto",
+      "nombre": "OOM kill",
+      "props": {
+        "definicion": "El kernel termina el proceso al exceder el límite de memoria del cgroup."
+      }
+    },
+    {
+      "id": "C_PCT",
+      "tipo": "Concepto",
+      "nombre": "Latencia por percentiles",
+      "props": {
+        "definicion": "P50/P95/P99: el valor bajo el cual cae el 50/95/99 % de las peticiones; captura la cola que el promedio oculta."
+      }
+    },
+    {
+      "id": "C_CONTENCION",
+      "tipo": "Concepto",
+      "nombre": "Contención de recursos"
+    },
+    {
+      "id": "C_JSONB",
+      "tipo": "Concepto",
+      "nombre": "JSONB",
+      "props": {
+        "definicion": "Tipo binario de PostgreSQL para documentos JSON, consultable con operadores -> y ->>."
+      }
+    },
+    {
+      "id": "C_DOCUMENTAL",
+      "tipo": "Concepto",
+      "nombre": "Modelo documental",
+      "props": {
+        "definicion": "Datos almacenados como documentos BSON anidados (MongoDB)."
+      }
+    },
+    {
+      "id": "ENG_MONGO",
+      "tipo": "Motor",
+      "nombre": "MongoDB",
+      "props": {
+        "version": "latest-stable",
+        "sharding": false
+      }
+    },
+    {
+      "id": "ENG_PG",
+      "tipo": "Motor",
+      "nombre": "PostgreSQL",
+      "props": {
+        "version": "latest-stable"
+      }
+    },
+    {
+      "id": "SE_WT",
+      "tipo": "StorageEngine",
+      "nombre": "WiredTiger"
+    },
+    {
+      "id": "ST_MONGO",
+      "tipo": "Almacen",
+      "nombre": "Colección orders",
+      "props": {
+        "motor": "MongoDB"
+      }
+    },
+    {
+      "id": "ST_PG",
+      "tipo": "Almacen",
+      "nombre": "Tabla orders (id UUID PK, data JSONB)",
+      "props": {
+        "motor": "PostgreSQL"
+      }
+    },
+    {
+      "id": "IDX_M_TS",
+      "tipo": "Indice",
+      "nombre": "Índice simple en timestamp",
+      "props": {
+        "motor": "MongoDB"
+      }
+    },
+    {
+      "id": "IDX_M_OID",
+      "tipo": "Indice",
+      "nombre": "Índice simple en order_id",
+      "props": {
+        "motor": "MongoDB"
+      }
+    },
+    {
+      "id": "IDX_PG_PK",
+      "tipo": "Indice",
+      "nombre": "PK en id",
+      "props": {
+        "motor": "PostgreSQL"
+      }
+    },
+    {
+      "id": "IDX_PG_TS",
+      "tipo": "Indice",
+      "nombre": "B-Tree sobre timestamp extraído del JSONB",
+      "props": {
+        "motor": "PostgreSQL",
+        "nota": "No se puede indexar el cast text→timestamptz (no es IMMUTABLE; una columna generada con ese cast también falla). Usar función envoltorio IMMUTABLE con zona fija o indexar el texto ISO-8601."
+      }
+    },
+    {
+      "id": "DOCKER",
+      "tipo": "Infraestructura",
+      "nombre": "Docker"
+    },
+    {
+      "id": "PROF_A",
+      "tipo": "PerfilRecursos",
+      "nombre": "PROFILE_A_BASELINE",
+      "props": {
+        "descripcion": "Sin contención (Baseline)",
+        "cpus": 4.0,
+        "memoria": "4096m",
+        "mem_swappiness": 0,
+        "nota_swappiness": "memory.swappiness no existe en cgroups v2; Docker lo descarta"
+      }
+    },
+    {
+      "id": "PROF_B",
+      "tipo": "PerfilRecursos",
+      "nombre": "PROFILE_B_MEDIUM",
+      "props": {
+        "descripcion": "Contención media",
+        "cpus": 2.0,
+        "memoria": "2048m",
+        "mem_swappiness": 0,
+        "nota_swappiness": "memory.swappiness no existe en cgroups v2; Docker lo descarta"
+      }
+    },
+    {
+      "id": "PROF_C",
+      "tipo": "PerfilRecursos",
+      "nombre": "PROFILE_C_SEVERE",
+      "props": {
+        "descripcion": "Contención severa (throttling activo)",
+        "cpus": 1.0,
+        "memoria": "1024m",
+        "mem_swappiness": 0,
+        "nota_swappiness": "memory.swappiness no existe en cgroups v2; Docker lo descarta"
+      }
+    },
+    {
+      "id": "DS",
+      "tipo": "Dataset",
+      "nombre": "Dataset sintético de órdenes",
+      "props": {
+        "registros": 500000,
+        "formato": "JSON",
+        "niveles_anidamiento": 3,
+        "items_promedio": 3
+      }
+    },
+    {
+      "id": "GEN",
+      "tipo": "Script",
+      "nombre": "synthetic_data_generator.py"
+    },
+    {
+      "id": "ENT_ORDER",
+      "tipo": "EntidadDocumento",
+      "nombre": "Order (documento raíz)",
+      "props": {
+        "atributos": [
+          "order_id: UUID",
+          "timestamp: ISO-8601"
+        ]
+      }
+    },
+    {
+      "id": "ENT_CUSTOMER",
+      "tipo": "EntidadDocumento",
+      "nombre": "customer",
+      "props": {
+        "atributos": [
+          "id",
+          "tier",
+          "segment"
+        ]
+      }
+    },
+    {
+      "id": "ENT_GEO",
+      "tipo": "EntidadDocumento",
+      "nombre": "customer.geo",
+      "props": {
+        "atributos": [
+          "country",
+          "state",
+          "city",
+          "zip",
+          "coordinates"
+        ]
+      }
+    },
+    {
+      "id": "ENT_ITEM",
+      "tipo": "EntidadDocumento",
+      "nombre": "items[]",
+      "props": {
+        "atributos": [
+          "sku",
+          "category",
+          "brand",
+          "qty",
+          "price",
+          "tax_pct",
+          "discounts"
+        ]
+      }
+    },
+    {
+      "id": "ENT_PAYMENT",
+      "tipo": "EntidadDocumento",
+      "nombre": "payment",
+      "props": {
+        "atributos": [
+          "method",
+          "status",
+          "transaction_id",
+          "gateway_latency_ms",
+          "totals",
+          "final_total"
+        ]
+      }
+    },
+    {
+      "id": "ENT_METADATA",
+      "tipo": "EntidadDocumento",
+      "nombre": "metadata",
+      "props": {
+        "atributos": [
+          "channel",
+          "user_agent",
+          "session_id",
+          "flags"
+        ]
+      }
+    },
+    {
+      "id": "F_ORDER_ID",
+      "tipo": "Campo",
+      "nombre": "order_id"
+    },
+    {
+      "id": "F_TS",
+      "tipo": "Campo",
+      "nombre": "timestamp"
+    },
+    {
+      "id": "F_CUST_ID",
+      "tipo": "Campo",
+      "nombre": "customer.id"
+    },
+    {
+      "id": "F_COUNTRY",
+      "tipo": "Campo",
+      "nombre": "customer.geo.country"
+    },
+    {
+      "id": "F_CATEGORY",
+      "tipo": "Campo",
+      "nombre": "items.category"
+    },
+    {
+      "id": "F_QTY",
+      "tipo": "Campo",
+      "nombre": "items.qty"
+    },
+    {
+      "id": "F_PRICE",
+      "tipo": "Campo",
+      "nombre": "items.price"
+    },
+    {
+      "id": "F_STATUS",
+      "tipo": "Campo",
+      "nombre": "payment.status"
+    },
+    {
+      "id": "F_FINAL_TOTAL",
+      "tipo": "Campo",
+      "nombre": "payment.final_total"
+    },
+    {
+      "id": "Q1",
+      "tipo": "Query",
+      "nombre": "Q1 · Unwind, Filter & Grouping",
+      "props": {
+        "estres": "Saturación de CPU",
+        "descripcion": "Desanidar items, filtrar price > 50, subtotal qty*price, sum/avg/count por país y categoría."
+      }
+    },
+    {
+      "id": "Q2",
+      "tipo": "Query",
+      "nombre": "Q2 · Massive Sort & Top-K",
+      "props": {
+        "estres": "Estrés de buffer",
+        "descripcion": "Filtrar completed desde 2026-01-01, ordenar desc por final_total, Top-1000, sin índice en el total."
+      }
+    },
+    {
+      "id": "Q1_MONGO",
+      "tipo": "Implementacion",
+      "nombre": "Pipeline $unwind → $match → $group"
+    },
+    {
+      "id": "Q1_PG",
+      "tipo": "Implementacion",
+      "nombre": "SQL jsonb_array_elements + WHERE + GROUP BY"
+    },
+    {
+      "id": "Q2_MONGO",
+      "tipo": "Implementacion",
+      "nombre": "Pipeline $match → $sort → $limit → $project"
+    },
+    {
+      "id": "Q2_PG",
+      "tipo": "Implementacion",
+      "nombre": "SQL WHERE + ORDER BY ... DESC LIMIT 1000"
+    },
+    {
+      "id": "OP_UNWIND",
+      "tipo": "Operador",
+      "nombre": "$unwind"
+    },
+    {
+      "id": "OP_MATCH",
+      "tipo": "Operador",
+      "nombre": "$match"
+    },
+    {
+      "id": "OP_GROUP",
+      "tipo": "Operador",
+      "nombre": "$group"
+    },
+    {
+      "id": "OP_SORT",
+      "tipo": "Operador",
+      "nombre": "$sort"
+    },
+    {
+      "id": "OP_LIMIT",
+      "tipo": "Operador",
+      "nombre": "$limit"
+    },
+    {
+      "id": "OP_PROJECT",
+      "tipo": "Operador",
+      "nombre": "$project"
+    },
+    {
+      "id": "OP_JAE",
+      "tipo": "Operador",
+      "nombre": "jsonb_array_elements"
+    },
+    {
+      "id": "OP_GROUPBY",
+      "tipo": "Operador",
+      "nombre": "GROUP BY"
+    },
+    {
+      "id": "OP_ORDERBY",
+      "tipo": "Operador",
+      "nombre": "ORDER BY ... LIMIT"
+    },
+    {
+      "id": "P_ADU",
+      "tipo": "ParametroMotor",
+      "nombre": "allowDiskUse",
+      "props": {
+        "motor": "MongoDB"
+      }
+    },
+    {
+      "id": "P_WM",
+      "tipo": "ParametroMotor",
+      "nombre": "work_mem",
+      "props": {
+        "motor": "PostgreSQL"
+      }
+    },
+    {
+      "id": "V_ADU_F",
+      "tipo": "VarianteEstres",
+      "nombre": "allowDiskUse: false"
+    },
+    {
+      "id": "V_ADU_T",
+      "tipo": "VarianteEstres",
+      "nombre": "allowDiskUse: true"
+    },
+    {
+      "id": "V_WM_4",
+      "tipo": "VarianteEstres",
+      "nombre": "work_mem = '4MB'"
+    },
+    {
+      "id": "V_WM_64",
+      "tipo": "VarianteEstres",
+      "nombre": "work_mem = '64MB'"
+    },
+    {
+      "id": "C_ERR_MEM",
+      "tipo": "Concepto",
+      "nombre": "Error por límite de memoria del motor",
+      "props": {
+        "definicion": "Con allowDiskUse:false, un stage que supera 100 MB aborta con error del motor (no es un OOM del kernel)."
+      }
+    },
+    {
+      "id": "C_TOPK",
+      "tipo": "Concepto",
+      "nombre": "Optimización Top-K",
+      "props": {
+        "definicion": "Mongo fusiona $sort+$limit y mantiene solo n documentos; PostgreSQL usa top-N heapsort. Reduce la memoria de Q2 y puede impedir el spill."
+      }
+    },
+    {
+      "id": "PROTO",
+      "tipo": "Protocolo",
+      "nombre": "Protocolo de ejecución",
+      "props": {
+        "repeticiones": 3,
+        "duracion_corrida_s": 420
+      }
+    },
+    {
+      "id": "CONC_1",
+      "tipo": "Concurrencia",
+      "nombre": "1 clientes",
+      "props": {
+        "clientes": 1
+      }
+    },
+    {
+      "id": "CONC_10",
+      "tipo": "Concurrencia",
+      "nombre": "10 clientes",
+      "props": {
+        "clientes": 10
+      }
+    },
+    {
+      "id": "CONC_50",
+      "tipo": "Concurrencia",
+      "nombre": "50 clientes",
+      "props": {
+        "clientes": 50
+      }
+    },
+    {
+      "id": "FASE_FLUSH",
+      "tipo": "FaseCiclo",
+      "nombre": "Flush de caché",
+      "props": {
+        "orden": 1,
+        "comando": "sync; echo 3 > /proc/sys/vm/drop_caches",
+        "requiere": "root en el host"
+      }
+    },
+    {
+      "id": "FASE_WARMUP",
+      "tipo": "FaseCiclo",
+      "nombre": "Warmup",
+      "props": {
+        "orden": 2,
+        "duracion_s": 60
+      }
+    },
+    {
+      "id": "FASE_MEDICION",
+      "tipo": "FaseCiclo",
+      "nombre": "Medición",
+      "props": {
+        "orden": 3,
+        "duracion_s": 300
+      }
+    },
+    {
+      "id": "FASE_COOLDOWN",
+      "tipo": "FaseCiclo",
+      "nombre": "Cooldown",
+      "props": {
+        "orden": 4,
+        "duracion_s": 60
+      }
+    },
+    {
+      "id": "MATRIZ",
+      "tipo": "MatrizExperimental",
+      "nombre": "Matriz de mediciones",
+      "props": {
+        "formula": "2 motores × 3 perfiles × 2 queries × 3 concurrencias",
+        "celdas": 36,
+        "repeticiones_por_celda": 3,
+        "corridas": 108,
+        "nota": "Las variantes de Q2 no están en el conteo; si se corren ambas: 54 celdas (162 corridas, ≈18.9 h)."
+      }
+    },
+    {
+      "id": "CELDA",
+      "tipo": "UnidadExperimental",
+      "nombre": "Celda",
+      "props": {
+        "definicion": "Combinación (motor, perfil, query, concurrencia)"
+      }
+    },
+    {
+      "id": "CORRIDA",
+      "tipo": "UnidadExperimental",
+      "nombre": "Corrida / repetición",
+      "props": {
+        "definicion": "Una ejecución completa del ciclo de vida sobre una celda"
+      }
+    },
+    {
+      "id": "PILOTO",
+      "tipo": "Paso",
+      "nombre": "Celda piloto",
+      "props": {
+        "definicion": "1 motor × 1 query × 1 concurrencia para validar el CSV antes de la matriz completa"
+      }
+    },
+    {
+      "id": "T_CADV",
+      "tipo": "HerramientaTelemetria",
+      "nombre": "cAdvisor",
+      "props": {
+        "ambito": "Contenedor (cgroups v2)"
+      }
+    },
+    {
+      "id": "T_NODE",
+      "tipo": "HerramientaTelemetria",
+      "nombre": "Node Exporter",
+      "props": {
+        "ambito": "Host (I/O, disco, swap)"
+      }
+    },
+    {
+      "id": "T_PROM",
+      "tipo": "HerramientaTelemetria",
+      "nombre": "Prometheus",
+      "props": {
+        "scrape_interval": "1s"
+      }
+    },
+    {
+      "id": "RUNNER",
+      "tipo": "Script",
+      "nombre": "benchmark_runner",
+      "props": {
+        "opciones": "k6 o Python multiproceso"
+      }
+    },
+    {
+      "id": "K_QPS",
+      "tipo": "KPI",
+      "nombre": "throughput_qps",
+      "props": {
+        "unidad": "queries/s",
+        "categoria": "Performance"
+      }
+    },
+    {
+      "id": "K_P50",
+      "tipo": "KPI",
+      "nombre": "latency_p50_ms",
+      "props": {
+        "unidad": "ms",
+        "categoria": "Performance"
+      }
+    },
+    {
+      "id": "K_P95",
+      "tipo": "KPI",
+      "nombre": "latency_p95_ms",
+      "props": {
+        "unidad": "ms",
+        "categoria": "Performance"
+      }
+    },
+    {
+      "id": "K_P99",
+      "tipo": "KPI",
+      "nombre": "latency_p99_ms",
+      "props": {
+        "unidad": "ms",
+        "categoria": "Performance"
+      }
+    },
+    {
+      "id": "K_THR",
+      "tipo": "KPI",
+      "nombre": "container_cpu_cfs_throttled_seconds_total",
+      "props": {
+        "unidad": "s",
+        "categoria": "OS / Contention"
+      }
+    },
+    {
+      "id": "K_RSS",
+      "tipo": "KPI",
+      "nombre": "container_memory_rss_bytes",
+      "props": {
+        "unidad": "bytes",
+        "categoria": "OS / Memory",
+        "metrica_cadvisor_real": "container_memory_rss",
+        "nota": "container_memory_rss_bytes no existe en cAdvisor"
+      }
+    },
+    {
+      "id": "K_SPILL",
+      "tipo": "KPI",
+      "nombre": "disk_spill_detected",
+      "props": {
+        "unidad": "boolean",
+        "categoria": "Engine / Internal"
+      }
+    },
+    {
+      "id": "K_OOM",
+      "tipo": "KPI",
+      "nombre": "oom_killed",
+      "props": {
+        "unidad": "boolean",
+        "categoria": "Stability"
+      }
+    },
+    {
+      "id": "CSV",
+      "tipo": "Entregable",
+      "nombre": "CSV de mediciones",
+      "props": {
+        "regla": "Sin columnas inventadas ni renombradas; se concatenan todos los CSV",
+        "granularidad": "Una fila por corrida (repetición)"
+      }
+    },
+    {
+      "id": "COL_TIMESTAMP_EPOCH",
+      "tipo": "ColumnaCSV",
+      "nombre": "timestamp_epoch",
+      "props": {
+        "posicion": 1,
+        "rol": "identificador"
+      }
+    },
+    {
+      "id": "COL_ENGINE",
+      "tipo": "ColumnaCSV",
+      "nombre": "engine",
+      "props": {
+        "posicion": 2,
+        "rol": "identificador"
+      }
+    },
+    {
+      "id": "COL_PROFILE",
+      "tipo": "ColumnaCSV",
+      "nombre": "profile",
+      "props": {
+        "posicion": 3,
+        "rol": "identificador"
+      }
+    },
+    {
+      "id": "COL_QUERY_ID",
+      "tipo": "ColumnaCSV",
+      "nombre": "query_id",
+      "props": {
+        "posicion": 4,
+        "rol": "identificador"
+      }
+    },
+    {
+      "id": "COL_CONCURRENCY",
+      "tipo": "ColumnaCSV",
+      "nombre": "concurrency",
+      "props": {
+        "posicion": 5,
+        "rol": "identificador"
+      }
+    },
+    {
+      "id": "COL_RUN_NUMBER",
+      "tipo": "ColumnaCSV",
+      "nombre": "run_number",
+      "props": {
+        "posicion": 6,
+        "rol": "identificador"
+      }
+    },
+    {
+      "id": "COL_THROUGHPUT_QPS",
+      "tipo": "ColumnaCSV",
+      "nombre": "throughput_qps",
+      "props": {
+        "posicion": 7,
+        "rol": "métrica"
+      }
+    },
+    {
+      "id": "COL_LATENCY_P50_MS",
+      "tipo": "ColumnaCSV",
+      "nombre": "latency_p50_ms",
+      "props": {
+        "posicion": 8,
+        "rol": "métrica"
+      }
+    },
+    {
+      "id": "COL_LATENCY_P95_MS",
+      "tipo": "ColumnaCSV",
+      "nombre": "latency_p95_ms",
+      "props": {
+        "posicion": 9,
+        "rol": "métrica"
+      }
+    },
+    {
+      "id": "COL_LATENCY_P99_MS",
+      "tipo": "ColumnaCSV",
+      "nombre": "latency_p99_ms",
+      "props": {
+        "posicion": 10,
+        "rol": "métrica"
+      }
+    },
+    {
+      "id": "COL_CPU_THROTTLED_SECONDS",
+      "tipo": "ColumnaCSV",
+      "nombre": "cpu_throttled_seconds",
+      "props": {
+        "posicion": 11,
+        "rol": "métrica"
+      }
+    },
+    {
+      "id": "COL_MAX_RSS_MB",
+      "tipo": "ColumnaCSV",
+      "nombre": "max_rss_mb",
+      "props": {
+        "posicion": 12,
+        "rol": "métrica"
+      }
+    },
+    {
+      "id": "COL_DISK_SPILL",
+      "tipo": "ColumnaCSV",
+      "nombre": "disk_spill",
+      "props": {
+        "posicion": 13,
+        "rol": "métrica"
+      }
+    },
+    {
+      "id": "COL_STATUS",
+      "tipo": "ColumnaCSV",
+      "nombre": "status",
+      "props": {
+        "posicion": 14,
+        "rol": "métrica"
+      }
+    },
+    {
+      "id": "ST_OK",
+      "tipo": "EstadoCorrida",
+      "nombre": "ok"
+    },
+    {
+      "id": "ST_SPILL",
+      "tipo": "EstadoCorrida",
+      "nombre": "spill"
+    },
+    {
+      "id": "ST_OOM",
+      "tipo": "EstadoCorrida",
+      "nombre": "oom"
+    },
+    {
+      "id": "ST_ERROR",
+      "tipo": "EstadoCorrida",
+      "nombre": "error"
+    },
+    {
+      "id": "REPO",
+      "tipo": "Entregable",
+      "nombre": "Repositorio de código"
+    },
+    {
+      "id": "COMPOSE",
+      "tipo": "Script",
+      "nombre": "docker-compose.yml",
+      "props": {
+        "descripcion": "Perfiles de recursos parametrizados"
+      }
+    },
+    {
+      "id": "QUERIES_DIR",
+      "tipo": "Script",
+      "nombre": "queries/",
+      "props": {
+        "descripcion": "Agregaciones MongoDB y SQL PostgreSQL"
+      }
+    },
+    {
+      "id": "RUN_SH",
+      "tipo": "Script",
+      "nombre": "run_benchmarks.sh",
+      "props": {
+        "descripcion": "Automatiza la matriz de mediciones"
+      }
+    },
+    {
+      "id": "EVID",
+      "tipo": "Entregable",
+      "nombre": "Evidencia de spill/OOM",
+      "props": {
+        "formato": "Capturas o logs"
+      }
+    },
+    {
+      "id": "REPORTE",
+      "tipo": "Entregable",
+      "nombre": "Reporte de métricas",
+      "props": {
+        "secciones": 7
+      }
+    },
+    {
+      "id": "EXP_M",
+      "tipo": "PlanEjecucion",
+      "nombre": "explain('executionStats')",
+      "props": {
+        "motor": "MongoDB"
+      }
+    },
+    {
+      "id": "EXP_PG",
+      "tipo": "PlanEjecucion",
+      "nombre": "EXPLAIN (ANALYZE, BUFFERS)",
+      "props": {
+        "motor": "PostgreSQL"
+      }
+    },
+    {
+      "id": "SEC1",
+      "tipo": "SeccionReporte",
+      "nombre": "1. Especificaciones del host y del entorno Docker",
+      "props": {
+        "numero": 1
+      }
+    },
+    {
+      "id": "SEC2",
+      "tipo": "SeccionReporte",
+      "nombre": "2. Método de medición y verificación del baseline",
+      "props": {
+        "numero": 2
+      }
+    },
+    {
+      "id": "SEC3",
+      "tipo": "SeccionReporte",
+      "nombre": "3. Resultados consolidados (throughput, P95/P99, tiempo de throttling)",
+      "props": {
+        "numero": 3
+      }
+    },
+    {
+      "id": "SEC4",
+      "tipo": "SeccionReporte",
+      "nombre": "4. Análisis gráfico (P99 vs concurrencia, throttling vs QPS, curva RSS)",
+      "props": {
+        "numero": 4
+      }
+    },
+    {
+      "id": "SEC5",
+      "tipo": "SeccionReporte",
+      "nombre": "5. Planes de ejecución (executionStats vs EXPLAIN ANALYZE BUFFERS)",
+      "props": {
+        "numero": 5
+      }
+    },
+    {
+      "id": "SEC6",
+      "tipo": "SeccionReporte",
+      "nombre": "6. Interpretación: límites de memoria, volcado a disco y throttling de cgroups",
+      "props": {
+        "numero": 6
+      }
+    },
+    {
+      "id": "SEC7",
+      "tipo": "SeccionReporte",
+      "nombre": "7. Recomendaciones técnicas para despliegues documentales en la nube",
+      "props": {
+        "numero": 7
+      }
+    },
+    {
+      "id": "REVISOR",
+      "tipo": "Actor",
+      "nombre": "Revisor",
+      "props": {
+        "rol": "Cuestiona resultados con los datos del CSV"
+      }
+    },
+    {
+      "id": "ESTUDIO",
+      "tipo": "Actor",
+      "nombre": "Estudio posterior",
+      "props": {
+        "rol": "Concatena los CSV de todos los equipos"
+      }
+    },
+    {
+      "id": "R1",
+      "tipo": "PreguntaRevisor",
+      "nombre": "¿El baseline es comparable (mismo dataset, mismas queries)?"
+    },
+    {
+      "id": "R2",
+      "tipo": "PreguntaRevisor",
+      "nombre": "¿Las latencias son P50/P95/P99 o solo promedios?"
+    },
+    {
+      "id": "R3",
+      "tipo": "PreguntaRevisor",
+      "nombre": "¿Hubo throttling CFS? ¿Cuántos segundos?"
+    },
+    {
+      "id": "R4",
+      "tipo": "PreguntaRevisor",
+      "nombre": "¿Spill a disco u OOM? ¿En qué perfil y concurrencia?"
+    },
+    {
+      "id": "R5",
+      "tipo": "PreguntaRevisor",
+      "nombre": "¿Cuántas repeticiones y cómo se resume (media/mediana)?"
+    },
+    {
+      "id": "R6",
+      "tipo": "PreguntaRevisor",
+      "nombre": "¿El plan de ejecución respalda el cuello de botella?"
+    }
+  ],
+  "aristas": [
+    {
+      "origen": "DOC_PLAYBOOK",
+      "relacion": "ESPECIFICA",
+      "destino": "ACT"
+    },
+    {
+      "origen": "DOC_SESION",
+      "relacion": "FIJA_CONTRATO_DE",
+      "destino": "ACT"
+    },
+    {
+      "origen": "DOC_SESION",
+      "relacion": "COMPLEMENTA",
+      "destino": "DOC_PLAYBOOK"
+    },
+    {
+      "origen": "DOC_SESION",
+      "relacion": "PLANTEA",
+      "destino": "PREG_GUIA"
+    },
+    {
+      "origen": "PREG_GUIA",
+      "relacion": "ORIENTA",
+      "destino": "ACT"
+    },
+    {
+      "origen": "ACT",
+      "relacion": "INVESTIGA",
+      "destino": "M1"
+    },
+    {
+      "origen": "ACT",
+      "relacion": "INVESTIGA",
+      "destino": "M2"
+    },
+    {
+      "origen": "ACT",
+      "relacion": "INVESTIGA",
+      "destino": "M3"
+    },
+    {
+      "origen": "C_CGROUPS",
+      "relacion": "IMPONE",
+      "destino": "C_CONTENCION"
+    },
+    {
+      "origen": "C_CONTENCION",
+      "relacion": "PROVOCA",
+      "destino": "C_CFS"
+    },
+    {
+      "origen": "C_CONTENCION",
+      "relacion": "PROVOCA",
+      "destino": "C_SPILL"
+    },
+    {
+      "origen": "C_CONTENCION",
+      "relacion": "PROVOCA",
+      "destino": "C_OOM"
+    },
+    {
+      "origen": "C_CFS",
+      "relacion": "DEGRADA",
+      "destino": "C_PCT"
+    },
+    {
+      "origen": "C_SPILL",
+      "relacion": "DEGRADA",
+      "destino": "C_PCT"
+    },
+    {
+      "origen": "M1",
+      "relacion": "SOBRE",
+      "destino": "C_PCT"
+    },
+    {
+      "origen": "M1",
+      "relacion": "SOBRE",
+      "destino": "C_CONTENCION"
+    },
+    {
+      "origen": "M2",
+      "relacion": "SOBRE",
+      "destino": "C_SPILL"
+    },
+    {
+      "origen": "M2",
+      "relacion": "SOBRE",
+      "destino": "C_OOM"
+    },
+    {
+      "origen": "M3",
+      "relacion": "SOBRE",
+      "destino": "C_CFS"
+    },
+    {
+      "origen": "ACT",
+      "relacion": "COMPARA",
+      "destino": "C_DOCUMENTAL"
+    },
+    {
+      "origen": "ACT",
+      "relacion": "COMPARA",
+      "destino": "C_JSONB"
+    },
+    {
+      "origen": "ACT",
+      "relacion": "COMPARA_MOTOR",
+      "destino": "ENG_MONGO"
+    },
+    {
+      "origen": "ACT",
+      "relacion": "COMPARA_MOTOR",
+      "destino": "ENG_PG"
+    },
+    {
+      "origen": "ENG_MONGO",
+      "relacion": "IMPLEMENTA",
+      "destino": "C_DOCUMENTAL"
+    },
+    {
+      "origen": "ENG_PG",
+      "relacion": "IMPLEMENTA",
+      "destino": "C_JSONB"
+    },
+    {
+      "origen": "ENG_MONGO",
+      "relacion": "USA_STORAGE_ENGINE",
+      "destino": "SE_WT"
+    },
+    {
+      "origen": "ENG_MONGO",
+      "relacion": "ALMACENA_EN",
+      "destino": "ST_MONGO"
+    },
+    {
+      "origen": "ENG_PG",
+      "relacion": "ALMACENA_EN",
+      "destino": "ST_PG"
+    },
+    {
+      "origen": "ST_MONGO",
+      "relacion": "TIENE_INDICE",
+      "destino": "IDX_M_TS"
+    },
+    {
+      "origen": "ST_MONGO",
+      "relacion": "TIENE_INDICE",
+      "destino": "IDX_M_OID"
+    },
+    {
+      "origen": "ST_PG",
+      "relacion": "TIENE_INDICE",
+      "destino": "IDX_PG_PK"
+    },
+    {
+      "origen": "ST_PG",
+      "relacion": "TIENE_INDICE",
+      "destino": "IDX_PG_TS"
+    },
+    {
+      "origen": "DOCKER",
+      "relacion": "USA",
+      "destino": "C_CGROUPS"
+    },
+    {
+      "origen": "ENG_MONGO",
+      "relacion": "CORRE_EN",
+      "destino": "DOCKER"
+    },
+    {
+      "origen": "ENG_PG",
+      "relacion": "CORRE_EN",
+      "destino": "DOCKER"
+    },
+    {
+      "origen": "DOCKER",
+      "relacion": "APLICA_PERFIL",
+      "destino": "PROF_A"
+    },
+    {
+      "origen": "PROF_A",
+      "relacion": "NIVEL_DE",
+      "destino": "C_CONTENCION"
+    },
+    {
+      "origen": "DOCKER",
+      "relacion": "APLICA_PERFIL",
+      "destino": "PROF_B"
+    },
+    {
+      "origen": "PROF_B",
+      "relacion": "NIVEL_DE",
+      "destino": "C_CONTENCION"
+    },
+    {
+      "origen": "DOCKER",
+      "relacion": "APLICA_PERFIL",
+      "destino": "PROF_C"
+    },
+    {
+      "origen": "PROF_C",
+      "relacion": "NIVEL_DE",
+      "destino": "C_CONTENCION"
+    },
+    {
+      "origen": "PROF_A",
+      "relacion": "ES_REFERENCIA_PARA",
+      "destino": "PROF_B"
+    },
+    {
+      "origen": "PROF_A",
+      "relacion": "ES_REFERENCIA_PARA",
+      "destino": "PROF_C"
+    },
+    {
+      "origen": "GEN",
+      "relacion": "GENERA",
+      "destino": "DS"
+    },
+    {
+      "origen": "DS",
+      "relacion": "SE_CARGA_EN",
+      "destino": "ST_MONGO"
+    },
+    {
+      "origen": "DS",
+      "relacion": "SE_CARGA_EN",
+      "destino": "ST_PG"
+    },
+    {
+      "origen": "DS",
+      "relacion": "CONTIENE",
+      "destino": "ENT_ORDER"
+    },
+    {
+      "origen": "ENT_ORDER",
+      "relacion": "ANIDA",
+      "destino": "ENT_CUSTOMER",
+      "props": {
+        "nivel": 1
+      }
+    },
+    {
+      "origen": "ENT_CUSTOMER",
+      "relacion": "ANIDA",
+      "destino": "ENT_GEO",
+      "props": {
+        "nivel": 2
+      }
+    },
+    {
+      "origen": "ENT_ORDER",
+      "relacion": "ANIDA_ARREGLO",
+      "destino": "ENT_ITEM",
+      "props": {
+        "nivel": 1,
+        "cardinalidad": "~3"
+      }
+    },
+    {
+      "origen": "ENT_ORDER",
+      "relacion": "ANIDA",
+      "destino": "ENT_PAYMENT",
+      "props": {
+        "nivel": 1
+      }
+    },
+    {
+      "origen": "ENT_ORDER",
+      "relacion": "ANIDA",
+      "destino": "ENT_METADATA",
+      "props": {
+        "nivel": 1
+      }
+    },
+    {
+      "origen": "ENT_ORDER",
+      "relacion": "TIENE_CAMPO",
+      "destino": "F_ORDER_ID"
+    },
+    {
+      "origen": "ENT_ORDER",
+      "relacion": "TIENE_CAMPO",
+      "destino": "F_TS"
+    },
+    {
+      "origen": "ENT_CUSTOMER",
+      "relacion": "TIENE_CAMPO",
+      "destino": "F_CUST_ID"
+    },
+    {
+      "origen": "ENT_GEO",
+      "relacion": "TIENE_CAMPO",
+      "destino": "F_COUNTRY"
+    },
+    {
+      "origen": "ENT_ITEM",
+      "relacion": "TIENE_CAMPO",
+      "destino": "F_CATEGORY"
+    },
+    {
+      "origen": "ENT_ITEM",
+      "relacion": "TIENE_CAMPO",
+      "destino": "F_QTY"
+    },
+    {
+      "origen": "ENT_ITEM",
+      "relacion": "TIENE_CAMPO",
+      "destino": "F_PRICE"
+    },
+    {
+      "origen": "ENT_PAYMENT",
+      "relacion": "TIENE_CAMPO",
+      "destino": "F_STATUS"
+    },
+    {
+      "origen": "ENT_PAYMENT",
+      "relacion": "TIENE_CAMPO",
+      "destino": "F_FINAL_TOTAL"
+    },
+    {
+      "origen": "IDX_M_TS",
+      "relacion": "INDEXA",
+      "destino": "F_TS"
+    },
+    {
+      "origen": "IDX_PG_TS",
+      "relacion": "INDEXA",
+      "destino": "F_TS"
+    },
+    {
+      "origen": "IDX_M_OID",
+      "relacion": "INDEXA",
+      "destino": "F_ORDER_ID"
+    },
+    {
+      "origen": "ACT",
+      "relacion": "EJECUTA",
+      "destino": "Q1"
+    },
+    {
+      "origen": "ACT",
+      "relacion": "EJECUTA",
+      "destino": "Q2"
+    },
+    {
+      "origen": "Q1",
+      "relacion": "ESTRESA",
+      "destino": "C_CFS"
+    },
+    {
+      "origen": "Q2",
+      "relacion": "ESTRESA",
+      "destino": "C_SPILL"
+    },
+    {
+      "origen": "Q2",
+      "relacion": "ESTRESA",
+      "destino": "C_OOM"
+    },
+    {
+      "origen": "Q1",
+      "relacion": "RESPONDE_PRINCIPALMENTE",
+      "destino": "M1"
+    },
+    {
+      "origen": "Q2",
+      "relacion": "RESPONDE_PRINCIPALMENTE",
+      "destino": "M2"
+    },
+    {
+      "origen": "Q1",
+      "relacion": "APORTA_A",
+      "destino": "M3"
+    },
+    {
+      "origen": "Q2",
+      "relacion": "APORTA_A",
+      "destino": "M3"
+    },
+    {
+      "origen": "Q1",
+      "relacion": "FILTRA_POR",
+      "destino": "F_PRICE"
+    },
+    {
+      "origen": "Q1",
+      "relacion": "AGRUPA_POR",
+      "destino": "F_COUNTRY"
+    },
+    {
+      "origen": "Q1",
+      "relacion": "AGRUPA_POR",
+      "destino": "F_CATEGORY"
+    },
+    {
+      "origen": "Q1",
+      "relacion": "CALCULA_CON",
+      "destino": "F_QTY"
+    },
+    {
+      "origen": "Q1",
+      "relacion": "CALCULA_CON",
+      "destino": "F_PRICE"
+    },
+    {
+      "origen": "Q2",
+      "relacion": "FILTRA_POR",
+      "destino": "F_STATUS"
+    },
+    {
+      "origen": "Q2",
+      "relacion": "FILTRA_POR",
+      "destino": "F_TS"
+    },
+    {
+      "origen": "Q2",
+      "relacion": "ORDENA_POR",
+      "destino": "F_FINAL_TOTAL"
+    },
+    {
+      "origen": "Q2",
+      "relacion": "PROYECTA",
+      "destino": "F_ORDER_ID"
+    },
+    {
+      "origen": "Q2",
+      "relacion": "PROYECTA",
+      "destino": "F_CUST_ID"
+    },
+    {
+      "origen": "Q2",
+      "relacion": "PROYECTA",
+      "destino": "F_FINAL_TOTAL"
+    },
+    {
+      "origen": "Q1",
+      "relacion": "IMPLEMENTADA_COMO",
+      "destino": "Q1_MONGO"
+    },
+    {
+      "origen": "Q1_MONGO",
+      "relacion": "SE_EJECUTA_EN",
+      "destino": "ENG_MONGO"
+    },
+    {
+      "origen": "Q1",
+      "relacion": "IMPLEMENTADA_COMO",
+      "destino": "Q1_PG"
+    },
+    {
+      "origen": "Q1_PG",
+      "relacion": "SE_EJECUTA_EN",
+      "destino": "ENG_PG"
+    },
+    {
+      "origen": "Q2",
+      "relacion": "IMPLEMENTADA_COMO",
+      "destino": "Q2_MONGO"
+    },
+    {
+      "origen": "Q2_MONGO",
+      "relacion": "SE_EJECUTA_EN",
+      "destino": "ENG_MONGO"
+    },
+    {
+      "origen": "Q2",
+      "relacion": "IMPLEMENTADA_COMO",
+      "destino": "Q2_PG"
+    },
+    {
+      "origen": "Q2_PG",
+      "relacion": "SE_EJECUTA_EN",
+      "destino": "ENG_PG"
+    },
+    {
+      "origen": "Q1_MONGO",
+      "relacion": "USA_OPERADOR",
+      "destino": "OP_UNWIND"
+    },
+    {
+      "origen": "Q1_MONGO",
+      "relacion": "USA_OPERADOR",
+      "destino": "OP_MATCH"
+    },
+    {
+      "origen": "Q1_MONGO",
+      "relacion": "USA_OPERADOR",
+      "destino": "OP_GROUP"
+    },
+    {
+      "origen": "Q1_PG",
+      "relacion": "USA_OPERADOR",
+      "destino": "OP_JAE"
+    },
+    {
+      "origen": "Q1_PG",
+      "relacion": "USA_OPERADOR",
+      "destino": "OP_GROUPBY"
+    },
+    {
+      "origen": "Q2_MONGO",
+      "relacion": "USA_OPERADOR",
+      "destino": "OP_MATCH"
+    },
+    {
+      "origen": "Q2_MONGO",
+      "relacion": "USA_OPERADOR",
+      "destino": "OP_SORT"
+    },
+    {
+      "origen": "Q2_MONGO",
+      "relacion": "USA_OPERADOR",
+      "destino": "OP_LIMIT"
+    },
+    {
+      "origen": "Q2_MONGO",
+      "relacion": "USA_OPERADOR",
+      "destino": "OP_PROJECT"
+    },
+    {
+      "origen": "Q2_PG",
+      "relacion": "USA_OPERADOR",
+      "destino": "OP_ORDERBY"
+    },
+    {
+      "origen": "OP_UNWIND",
+      "relacion": "EQUIVALE_A",
+      "destino": "OP_JAE"
+    },
+    {
+      "origen": "OP_GROUP",
+      "relacion": "EQUIVALE_A",
+      "destino": "OP_GROUPBY"
+    },
+    {
+      "origen": "OP_SORT",
+      "relacion": "EQUIVALE_A",
+      "destino": "OP_ORDERBY"
+    },
+    {
+      "origen": "ENG_MONGO",
+      "relacion": "EXPONE_PARAMETRO",
+      "destino": "P_ADU"
+    },
+    {
+      "origen": "ENG_PG",
+      "relacion": "EXPONE_PARAMETRO",
+      "destino": "P_WM"
+    },
+    {
+      "origen": "P_ADU",
+      "relacion": "CONTROLA",
+      "destino": "C_SPILL"
+    },
+    {
+      "origen": "P_WM",
+      "relacion": "CONTROLA",
+      "destino": "C_SPILL"
+    },
+    {
+      "origen": "Q2_MONGO",
+      "relacion": "TIENE_VARIANTE",
+      "destino": "V_ADU_F"
+    },
+    {
+      "origen": "V_ADU_F",
+      "relacion": "CONFIGURA",
+      "destino": "P_ADU"
+    },
+    {
+      "origen": "Q2_MONGO",
+      "relacion": "TIENE_VARIANTE",
+      "destino": "V_ADU_T"
+    },
+    {
+      "origen": "V_ADU_T",
+      "relacion": "CONFIGURA",
+      "destino": "P_ADU"
+    },
+    {
+      "origen": "Q2_PG",
+      "relacion": "TIENE_VARIANTE",
+      "destino": "V_WM_4"
+    },
+    {
+      "origen": "V_WM_4",
+      "relacion": "CONFIGURA",
+      "destino": "P_WM"
+    },
+    {
+      "origen": "Q2_PG",
+      "relacion": "TIENE_VARIANTE",
+      "destino": "V_WM_64"
+    },
+    {
+      "origen": "V_WM_64",
+      "relacion": "CONFIGURA",
+      "destino": "P_WM"
+    },
+    {
+      "origen": "V_ADU_F",
+      "relacion": "PUEDE_CAUSAR",
+      "destino": "C_ERR_MEM",
+      "props": {
+        "condicion": "Sesión: 'spill o fallo' en perfil C, concurrencia 50 (ejemplo ficticio)"
+      }
+    },
+    {
+      "origen": "ST_ERROR",
+      "relacion": "INDICA",
+      "destino": "C_ERR_MEM"
+    },
+    {
+      "origen": "V_ADU_T",
+      "relacion": "PUEDE_CAUSAR",
+      "destino": "C_SPILL",
+      "props": {
+        "efecto": "Termina pero baja QPS",
+        "nota": "Desde MongoDB 6.0 equivale al default (allowDiskUseByDefault=true)"
+      }
+    },
+    {
+      "origen": "V_WM_4",
+      "relacion": "PUEDE_CAUSAR",
+      "destino": "C_SPILL",
+      "props": {
+        "condicion": "Solo si el heap Top-K no cabe en work_mem; con LIMIT 1000 lo esperado es top-N heapsort en memoria"
+      }
+    },
+    {
+      "origen": "OP_SORT",
+      "relacion": "SE_OPTIMIZA_CON",
+      "destino": "C_TOPK"
+    },
+    {
+      "origen": "OP_ORDERBY",
+      "relacion": "SE_OPTIMIZA_CON",
+      "destino": "C_TOPK"
+    },
+    {
+      "origen": "C_TOPK",
+      "relacion": "MITIGA",
+      "destino": "C_SPILL"
+    },
+    {
+      "origen": "C_TOPK",
+      "relacion": "SE_VERIFICA_EN",
+      "destino": "PILOTO"
+    },
+    {
+      "origen": "ACT",
+      "relacion": "SIGUE",
+      "destino": "PROTO"
+    },
+    {
+      "origen": "PROTO",
+      "relacion": "DEFINE_CONCURRENCIA",
+      "destino": "CONC_1"
+    },
+    {
+      "origen": "PROTO",
+      "relacion": "DEFINE_CONCURRENCIA",
+      "destino": "CONC_10"
+    },
+    {
+      "origen": "PROTO",
+      "relacion": "DEFINE_CONCURRENCIA",
+      "destino": "CONC_50"
+    },
+    {
+      "origen": "PROTO",
+      "relacion": "TIENE_FASE",
+      "destino": "FASE_FLUSH"
+    },
+    {
+      "origen": "PROTO",
+      "relacion": "TIENE_FASE",
+      "destino": "FASE_WARMUP"
+    },
+    {
+      "origen": "FASE_FLUSH",
+      "relacion": "SIGUIENTE",
+      "destino": "FASE_WARMUP"
+    },
+    {
+      "origen": "PROTO",
+      "relacion": "TIENE_FASE",
+      "destino": "FASE_MEDICION"
+    },
+    {
+      "origen": "FASE_WARMUP",
+      "relacion": "SIGUIENTE",
+      "destino": "FASE_MEDICION"
+    },
+    {
+      "origen": "PROTO",
+      "relacion": "TIENE_FASE",
+      "destino": "FASE_COOLDOWN"
+    },
+    {
+      "origen": "FASE_MEDICION",
+      "relacion": "SIGUIENTE",
+      "destino": "FASE_COOLDOWN"
+    },
+    {
+      "origen": "PROTO",
+      "relacion": "GENERA",
+      "destino": "MATRIZ"
+    },
+    {
+      "origen": "MATRIZ",
+      "relacion": "COMPUESTA_DE",
+      "destino": "CELDA",
+      "props": {
+        "cantidad": 36
+      }
+    },
+    {
+      "origen": "CELDA",
+      "relacion": "SE_REPITE_EN",
+      "destino": "CORRIDA",
+      "props": {
+        "cantidad": 3
+      }
+    },
+    {
+      "origen": "CELDA",
+      "relacion": "DIMENSION",
+      "destino": "ENG_MONGO"
+    },
+    {
+      "origen": "CELDA",
+      "relacion": "DIMENSION",
+      "destino": "ENG_PG"
+    },
+    {
+      "origen": "CELDA",
+      "relacion": "DIMENSION",
+      "destino": "PROF_A"
+    },
+    {
+      "origen": "CELDA",
+      "relacion": "DIMENSION",
+      "destino": "PROF_B"
+    },
+    {
+      "origen": "CELDA",
+      "relacion": "DIMENSION",
+      "destino": "PROF_C"
+    },
+    {
+      "origen": "CELDA",
+      "relacion": "DIMENSION",
+      "destino": "Q1"
+    },
+    {
+      "origen": "CELDA",
+      "relacion": "DIMENSION",
+      "destino": "Q2"
+    },
+    {
+      "origen": "CELDA",
+      "relacion": "DIMENSION",
+      "destino": "CONC_1"
+    },
+    {
+      "origen": "CELDA",
+      "relacion": "DIMENSION",
+      "destino": "CONC_10"
+    },
+    {
+      "origen": "CELDA",
+      "relacion": "DIMENSION",
+      "destino": "CONC_50"
+    },
+    {
+      "origen": "CORRIDA",
+      "relacion": "RECORRE",
+      "destino": "FASE_FLUSH"
+    },
+    {
+      "origen": "DOC_SESION",
+      "relacion": "RECOMIENDA",
+      "destino": "PILOTO"
+    },
+    {
+      "origen": "PILOTO",
+      "relacion": "PRECEDE_A",
+      "destino": "MATRIZ"
+    },
+    {
+      "origen": "T_PROM",
+      "relacion": "RECOLECTA_DE",
+      "destino": "T_CADV"
+    },
+    {
+      "origen": "T_PROM",
+      "relacion": "RECOLECTA_DE",
+      "destino": "T_NODE"
+    },
+    {
+      "origen": "T_CADV",
+      "relacion": "LEE",
+      "destino": "C_CGROUPS"
+    },
+    {
+      "origen": "RUNNER",
+      "relacion": "EJECUTA_CARGA",
+      "destino": "Q1"
+    },
+    {
+      "origen": "RUNNER",
+      "relacion": "EJECUTA_CARGA",
+      "destino": "Q2"
+    },
+    {
+      "origen": "RUNNER",
+      "relacion": "SIMULA",
+      "destino": "CONC_1"
+    },
+    {
+      "origen": "RUNNER",
+      "relacion": "SIMULA",
+      "destino": "CONC_10"
+    },
+    {
+      "origen": "RUNNER",
+      "relacion": "SIMULA",
+      "destino": "CONC_50"
+    },
+    {
+      "origen": "RUNNER",
+      "relacion": "MIDE",
+      "destino": "K_QPS"
+    },
+    {
+      "origen": "RUNNER",
+      "relacion": "MIDE",
+      "destino": "K_P50"
+    },
+    {
+      "origen": "RUNNER",
+      "relacion": "MIDE",
+      "destino": "K_P95"
+    },
+    {
+      "origen": "RUNNER",
+      "relacion": "MIDE",
+      "destino": "K_P99"
+    },
+    {
+      "origen": "T_CADV",
+      "relacion": "MIDE",
+      "destino": "K_THR"
+    },
+    {
+      "origen": "T_CADV",
+      "relacion": "MIDE",
+      "destino": "K_RSS"
+    },
+    {
+      "origen": "K_SPILL",
+      "relacion": "SE_DETECTA_CON",
+      "destino": "EXP_M",
+      "props": {
+        "via": "usedDisk: true en executionStats / logs del motor"
+      }
+    },
+    {
+      "origen": "K_SPILL",
+      "relacion": "SE_DETECTA_CON",
+      "destino": "EXP_PG",
+      "props": {
+        "via": "'Sort Method: external merge' / temp buffers"
+      }
+    },
+    {
+      "origen": "K_OOM",
+      "relacion": "SE_DETECTA_CON",
+      "destino": "T_CADV",
+      "props": {
+        "via": "container_oom_events_total o docker inspect State.OOMKilled"
+      }
+    },
+    {
+      "origen": "K_THR",
+      "relacion": "CUANTIFICA",
+      "destino": "C_CFS"
+    },
+    {
+      "origen": "K_SPILL",
+      "relacion": "CUANTIFICA",
+      "destino": "C_SPILL"
+    },
+    {
+      "origen": "K_OOM",
+      "relacion": "CUANTIFICA",
+      "destino": "C_OOM"
+    },
+    {
+      "origen": "K_P50",
+      "relacion": "CUANTIFICA",
+      "destino": "C_PCT"
+    },
+    {
+      "origen": "K_P95",
+      "relacion": "CUANTIFICA",
+      "destino": "C_PCT"
+    },
+    {
+      "origen": "K_P99",
+      "relacion": "CUANTIFICA",
+      "destino": "C_PCT"
+    },
+    {
+      "origen": "K_P95",
+      "relacion": "RESPONDE",
+      "destino": "M1"
+    },
+    {
+      "origen": "K_P99",
+      "relacion": "RESPONDE",
+      "destino": "M1"
+    },
+    {
+      "origen": "K_SPILL",
+      "relacion": "RESPONDE",
+      "destino": "M2"
+    },
+    {
+      "origen": "K_OOM",
+      "relacion": "RESPONDE",
+      "destino": "M2"
+    },
+    {
+      "origen": "K_RSS",
+      "relacion": "RESPONDE",
+      "destino": "M2"
+    },
+    {
+      "origen": "K_THR",
+      "relacion": "RESPONDE",
+      "destino": "M3"
+    },
+    {
+      "origen": "K_RSS",
+      "relacion": "RESPONDE",
+      "destino": "M3"
+    },
+    {
+      "origen": "K_QPS",
+      "relacion": "RESPONDE",
+      "destino": "M3"
+    },
+    {
+      "origen": "CORRIDA",
+      "relacion": "PRODUCE_FILA_EN",
+      "destino": "CSV"
+    },
+    {
+      "origen": "CSV",
+      "relacion": "TIENE_COLUMNA",
+      "destino": "COL_TIMESTAMP_EPOCH"
+    },
+    {
+      "origen": "CSV",
+      "relacion": "TIENE_COLUMNA",
+      "destino": "COL_ENGINE"
+    },
+    {
+      "origen": "CSV",
+      "relacion": "TIENE_COLUMNA",
+      "destino": "COL_PROFILE"
+    },
+    {
+      "origen": "CSV",
+      "relacion": "TIENE_COLUMNA",
+      "destino": "COL_QUERY_ID"
+    },
+    {
+      "origen": "CSV",
+      "relacion": "TIENE_COLUMNA",
+      "destino": "COL_CONCURRENCY"
+    },
+    {
+      "origen": "CSV",
+      "relacion": "TIENE_COLUMNA",
+      "destino": "COL_RUN_NUMBER"
+    },
+    {
+      "origen": "CSV",
+      "relacion": "TIENE_COLUMNA",
+      "destino": "COL_THROUGHPUT_QPS"
+    },
+    {
+      "origen": "CSV",
+      "relacion": "TIENE_COLUMNA",
+      "destino": "COL_LATENCY_P50_MS"
+    },
+    {
+      "origen": "CSV",
+      "relacion": "TIENE_COLUMNA",
+      "destino": "COL_LATENCY_P95_MS"
+    },
+    {
+      "origen": "CSV",
+      "relacion": "TIENE_COLUMNA",
+      "destino": "COL_LATENCY_P99_MS"
+    },
+    {
+      "origen": "CSV",
+      "relacion": "TIENE_COLUMNA",
+      "destino": "COL_CPU_THROTTLED_SECONDS"
+    },
+    {
+      "origen": "CSV",
+      "relacion": "TIENE_COLUMNA",
+      "destino": "COL_MAX_RSS_MB"
+    },
+    {
+      "origen": "CSV",
+      "relacion": "TIENE_COLUMNA",
+      "destino": "COL_DISK_SPILL"
+    },
+    {
+      "origen": "CSV",
+      "relacion": "TIENE_COLUMNA",
+      "destino": "COL_STATUS"
+    },
+    {
+      "origen": "COL_ENGINE",
+      "relacion": "REGISTRA",
+      "destino": "ENG_MONGO"
+    },
+    {
+      "origen": "COL_ENGINE",
+      "relacion": "REGISTRA",
+      "destino": "ENG_PG"
+    },
+    {
+      "origen": "COL_PROFILE",
+      "relacion": "REGISTRA",
+      "destino": "PROF_A"
+    },
+    {
+      "origen": "COL_PROFILE",
+      "relacion": "REGISTRA",
+      "destino": "PROF_B"
+    },
+    {
+      "origen": "COL_PROFILE",
+      "relacion": "REGISTRA",
+      "destino": "PROF_C"
+    },
+    {
+      "origen": "COL_QUERY_ID",
+      "relacion": "REGISTRA",
+      "destino": "Q1"
+    },
+    {
+      "origen": "COL_QUERY_ID",
+      "relacion": "REGISTRA",
+      "destino": "Q2"
+    },
+    {
+      "origen": "COL_CONCURRENCY",
+      "relacion": "REGISTRA",
+      "destino": "CONC_1"
+    },
+    {
+      "origen": "COL_CONCURRENCY",
+      "relacion": "REGISTRA",
+      "destino": "CONC_10"
+    },
+    {
+      "origen": "COL_CONCURRENCY",
+      "relacion": "REGISTRA",
+      "destino": "CONC_50"
+    },
+    {
+      "origen": "K_QPS",
+      "relacion": "SE_REGISTRA_EN",
+      "destino": "COL_THROUGHPUT_QPS",
+      "props": {
+        "transformacion": "directo"
+      }
+    },
+    {
+      "origen": "K_P50",
+      "relacion": "SE_REGISTRA_EN",
+      "destino": "COL_LATENCY_P50_MS",
+      "props": {
+        "transformacion": "directo"
+      }
+    },
+    {
+      "origen": "K_P95",
+      "relacion": "SE_REGISTRA_EN",
+      "destino": "COL_LATENCY_P95_MS",
+      "props": {
+        "transformacion": "directo"
+      }
+    },
+    {
+      "origen": "K_P99",
+      "relacion": "SE_REGISTRA_EN",
+      "destino": "COL_LATENCY_P99_MS",
+      "props": {
+        "transformacion": "directo"
+      }
+    },
+    {
+      "origen": "K_THR",
+      "relacion": "SE_REGISTRA_EN",
+      "destino": "COL_CPU_THROTTLED_SECONDS",
+      "props": {
+        "transformacion": "delta del contador durante la fase de medición"
+      }
+    },
+    {
+      "origen": "K_RSS",
+      "relacion": "SE_REGISTRA_EN",
+      "destino": "COL_MAX_RSS_MB",
+      "props": {
+        "transformacion": "máximo de la serie, bytes / 1 048 576"
+      }
+    },
+    {
+      "origen": "K_SPILL",
+      "relacion": "SE_REGISTRA_EN",
+      "destino": "COL_DISK_SPILL",
+      "props": {
+        "transformacion": "directo"
+      }
+    },
+    {
+      "origen": "K_OOM",
+      "relacion": "SE_REGISTRA_EN",
+      "destino": "COL_STATUS",
+      "props": {
+        "transformacion": "oom_killed=true ⇒ status='oom'"
+      }
+    },
+    {
+      "origen": "COL_STATUS",
+      "relacion": "TOMA_VALOR",
+      "destino": "ST_OK"
+    },
+    {
+      "origen": "COL_STATUS",
+      "relacion": "TOMA_VALOR",
+      "destino": "ST_SPILL"
+    },
+    {
+      "origen": "COL_STATUS",
+      "relacion": "TOMA_VALOR",
+      "destino": "ST_OOM"
+    },
+    {
+      "origen": "COL_STATUS",
+      "relacion": "TOMA_VALOR",
+      "destino": "ST_ERROR"
+    },
+    {
+      "origen": "ST_SPILL",
+      "relacion": "INDICA",
+      "destino": "C_SPILL"
+    },
+    {
+      "origen": "ST_OOM",
+      "relacion": "INDICA",
+      "destino": "C_OOM"
+    },
+    {
+      "origen": "REPO",
+      "relacion": "CONTIENE",
+      "destino": "COMPOSE"
+    },
+    {
+      "origen": "REPO",
+      "relacion": "CONTIENE",
+      "destino": "GEN"
+    },
+    {
+      "origen": "REPO",
+      "relacion": "CONTIENE",
+      "destino": "RUNNER"
+    },
+    {
+      "origen": "REPO",
+      "relacion": "CONTIENE",
+      "destino": "QUERIES_DIR"
+    },
+    {
+      "origen": "REPO",
+      "relacion": "CONTIENE",
+      "destino": "RUN_SH"
+    },
+    {
+      "origen": "COMPOSE",
+      "relacion": "DEFINE",
+      "destino": "PROF_A"
+    },
+    {
+      "origen": "COMPOSE",
+      "relacion": "DEFINE",
+      "destino": "PROF_B"
+    },
+    {
+      "origen": "COMPOSE",
+      "relacion": "DEFINE",
+      "destino": "PROF_C"
+    },
+    {
+      "origen": "COMPOSE",
+      "relacion": "LEVANTA",
+      "destino": "ENG_MONGO"
+    },
+    {
+      "origen": "COMPOSE",
+      "relacion": "LEVANTA",
+      "destino": "ENG_PG"
+    },
+    {
+      "origen": "QUERIES_DIR",
+      "relacion": "CONTIENE",
+      "destino": "Q1_MONGO"
+    },
+    {
+      "origen": "QUERIES_DIR",
+      "relacion": "CONTIENE",
+      "destino": "Q1_PG"
+    },
+    {
+      "origen": "QUERIES_DIR",
+      "relacion": "CONTIENE",
+      "destino": "Q2_MONGO"
+    },
+    {
+      "origen": "QUERIES_DIR",
+      "relacion": "CONTIENE",
+      "destino": "Q2_PG"
+    },
+    {
+      "origen": "RUN_SH",
+      "relacion": "AUTOMATIZA",
+      "destino": "MATRIZ"
+    },
+    {
+      "origen": "RUN_SH",
+      "relacion": "INVOCA",
+      "destino": "RUNNER"
+    },
+    {
+      "origen": "RUNNER",
+      "relacion": "ESCRIBE",
+      "destino": "CSV"
+    },
+    {
+      "origen": "ACT",
+      "relacion": "ENTREGA",
+      "destino": "REPO"
+    },
+    {
+      "origen": "ACT",
+      "relacion": "ENTREGA",
+      "destino": "CSV"
+    },
+    {
+      "origen": "ACT",
+      "relacion": "ENTREGA",
+      "destino": "EVID"
+    },
+    {
+      "origen": "ACT",
+      "relacion": "ENTREGA",
+      "destino": "REPORTE"
+    },
+    {
+      "origen": "EVID",
+      "relacion": "DOCUMENTA",
+      "destino": "C_SPILL"
+    },
+    {
+      "origen": "EVID",
+      "relacion": "DOCUMENTA",
+      "destino": "C_OOM"
+    },
+    {
+      "origen": "ENG_MONGO",
+      "relacion": "OFRECE",
+      "destino": "EXP_M"
+    },
+    {
+      "origen": "ENG_PG",
+      "relacion": "OFRECE",
+      "destino": "EXP_PG"
+    },
+    {
+      "origen": "REPORTE",
+      "relacion": "TIENE_SECCION",
+      "destino": "SEC1"
+    },
+    {
+      "origen": "REPORTE",
+      "relacion": "TIENE_SECCION",
+      "destino": "SEC2"
+    },
+    {
+      "origen": "REPORTE",
+      "relacion": "TIENE_SECCION",
+      "destino": "SEC3"
+    },
+    {
+      "origen": "REPORTE",
+      "relacion": "TIENE_SECCION",
+      "destino": "SEC4"
+    },
+    {
+      "origen": "REPORTE",
+      "relacion": "TIENE_SECCION",
+      "destino": "SEC5"
+    },
+    {
+      "origen": "REPORTE",
+      "relacion": "TIENE_SECCION",
+      "destino": "SEC6"
+    },
+    {
+      "origen": "REPORTE",
+      "relacion": "TIENE_SECCION",
+      "destino": "SEC7"
+    },
+    {
+      "origen": "SEC1",
+      "relacion": "DESCRIBE",
+      "destino": "DOCKER"
+    },
+    {
+      "origen": "SEC2",
+      "relacion": "DESCRIBE",
+      "destino": "PROTO"
+    },
+    {
+      "origen": "SEC2",
+      "relacion": "VERIFICA",
+      "destino": "PROF_A"
+    },
+    {
+      "origen": "SEC3",
+      "relacion": "CONSOLIDA",
+      "destino": "CSV"
+    },
+    {
+      "origen": "SEC4",
+      "relacion": "GRAFICA",
+      "destino": "K_P99"
+    },
+    {
+      "origen": "SEC4",
+      "relacion": "GRAFICA",
+      "destino": "K_THR"
+    },
+    {
+      "origen": "SEC4",
+      "relacion": "GRAFICA",
+      "destino": "K_QPS"
+    },
+    {
+      "origen": "SEC4",
+      "relacion": "GRAFICA",
+      "destino": "K_RSS"
+    },
+    {
+      "origen": "SEC5",
+      "relacion": "ANALIZA",
+      "destino": "EXP_M"
+    },
+    {
+      "origen": "SEC5",
+      "relacion": "ANALIZA",
+      "destino": "EXP_PG"
+    },
+    {
+      "origen": "SEC6",
+      "relacion": "INTERPRETA",
+      "destino": "C_SPILL"
+    },
+    {
+      "origen": "SEC6",
+      "relacion": "INTERPRETA",
+      "destino": "C_OOM"
+    },
+    {
+      "origen": "SEC6",
+      "relacion": "INTERPRETA",
+      "destino": "C_CFS"
+    },
+    {
+      "origen": "SEC3",
+      "relacion": "RESPONDE",
+      "destino": "M1"
+    },
+    {
+      "origen": "SEC6",
+      "relacion": "RESPONDE",
+      "destino": "M2"
+    },
+    {
+      "origen": "SEC3",
+      "relacion": "RESPONDE",
+      "destino": "M3"
+    },
+    {
+      "origen": "CSV",
+      "relacion": "ALIMENTA",
+      "destino": "ESTUDIO"
+    },
+    {
+      "origen": "REPORTE",
+      "relacion": "ES_EVALUADO_POR",
+      "destino": "REVISOR"
+    },
+    {
+      "origen": "REVISOR",
+      "relacion": "PREGUNTA",
+      "destino": "R1"
+    },
+    {
+      "origen": "R1",
+      "relacion": "SE_RESPONDE_CON",
+      "destino": "SEC2"
+    },
+    {
+      "origen": "R1",
+      "relacion": "SE_RESPONDE_CON",
+      "destino": "PROF_A"
+    },
+    {
+      "origen": "R1",
+      "relacion": "SE_RESPONDE_CON",
+      "destino": "DS"
+    },
+    {
+      "origen": "REVISOR",
+      "relacion": "PREGUNTA",
+      "destino": "R2"
+    },
+    {
+      "origen": "R2",
+      "relacion": "SE_RESPONDE_CON",
+      "destino": "K_P50"
+    },
+    {
+      "origen": "R2",
+      "relacion": "SE_RESPONDE_CON",
+      "destino": "K_P95"
+    },
+    {
+      "origen": "R2",
+      "relacion": "SE_RESPONDE_CON",
+      "destino": "K_P99"
+    },
+    {
+      "origen": "REVISOR",
+      "relacion": "PREGUNTA",
+      "destino": "R3"
+    },
+    {
+      "origen": "R3",
+      "relacion": "SE_RESPONDE_CON",
+      "destino": "COL_CPU_THROTTLED_SECONDS"
+    },
+    {
+      "origen": "REVISOR",
+      "relacion": "PREGUNTA",
+      "destino": "R4"
+    },
+    {
+      "origen": "R4",
+      "relacion": "SE_RESPONDE_CON",
+      "destino": "COL_DISK_SPILL"
+    },
+    {
+      "origen": "R4",
+      "relacion": "SE_RESPONDE_CON",
+      "destino": "COL_STATUS"
+    },
+    {
+      "origen": "R4",
+      "relacion": "SE_RESPONDE_CON",
+      "destino": "EVID"
+    },
+    {
+      "origen": "REVISOR",
+      "relacion": "PREGUNTA",
+      "destino": "R5"
+    },
+    {
+      "origen": "R5",
+      "relacion": "SE_RESPONDE_CON",
+      "destino": "COL_RUN_NUMBER"
+    },
+    {
+      "origen": "R5",
+      "relacion": "SE_RESPONDE_CON",
+      "destino": "SEC3"
+    },
+    {
+      "origen": "REVISOR",
+      "relacion": "PREGUNTA",
+      "destino": "R6"
+    },
+    {
+      "origen": "R6",
+      "relacion": "SE_RESPONDE_CON",
+      "destino": "SEC5"
+    },
+    {
+      "origen": "R6",
+      "relacion": "SE_RESPONDE_CON",
+      "destino": "EXP_M"
+    },
+    {
+      "origen": "R6",
+      "relacion": "SE_RESPONDE_CON",
+      "destino": "EXP_PG"
+    }
+  ]
+}
