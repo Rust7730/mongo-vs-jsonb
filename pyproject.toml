@@ -1,0 +1,20 @@
+[project]
+name = "practica-bd"
+version = "1.0.0"
+description = "Contención de CPU y memoria en agregaciones JSON: MongoDB vs PostgreSQL JSONB"
+requires-python = ">=3.12,<3.13"
+dependencies = ["pymongo>=4.10", "psycopg[binary]>=3.2", "pandas>=2.2", "matplotlib>=3.9"]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+report = [
+    "markdown>=3.11.2",
+    "weasyprint>=70.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.uv]
+package = false

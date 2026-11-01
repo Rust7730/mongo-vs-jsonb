@@ -1,0 +1,32 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+
+# Datos regenerables con synthetic_data_generator.py (semilla 42)
+data/
+
+# Estado de ejecución: se conserva solo lo que respalda los resultados
+state/*
+!state/journal.jsonl
+!state/plan.json
+!state/manifest.json
+!state/dataset.json
+state-rehearsal/
+results-rehearsal/
+
+# Entorno local
+.env
+.claude/settings.local.json
+.claude/worktrees/
+.idea/
+.vscode/
+.DS_Store
+*.swp
+
+# No ignorar *.log ni *.env: results/raw/*/*_evidence.log y profiles/*.env son entregables.
