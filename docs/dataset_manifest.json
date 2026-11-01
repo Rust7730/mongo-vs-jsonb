@@ -1,0 +1,28 @@
+{
+  "generador": "synthetic_data_generator.py",
+  "parametros": {
+    "n": 500000,
+    "seed": 42,
+    "customers": 100000,
+    "start": "2025-01-01T00:00:00Z",
+    "end": "2026-10-30T23:59:59Z",
+    "format": "ndjson"
+  },
+  "python": "3.12.16",
+  "sha256_flujo_json": "9cd202a6e102ad8e97ebd094f362051f6d46deea98fa0b0a1d5e4f3bad2c0e6f",
+  "archivos": {
+    "ndjson": "data/orders.ndjson"
+  },
+  "estadisticas": {
+    "documentos": 500000,
+    "items_totales": 1499046,
+    "items_por_orden_promedio": 2.998,
+    "pct_status_completed": 79.94,
+    "pct_timestamp_ge_2026_01_01": 45.34,
+    "pct_filas_que_cumplen_filtro_Q2": 36.26,
+    "pct_items_price_gt_50_Q1": 42.97,
+    "bytes_json_total": 557058284,
+    "bytes_json_promedio_por_doc": 1114.1,
+    "segundos_generacion": 24.2
+  }
+}
